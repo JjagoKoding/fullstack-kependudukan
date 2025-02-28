@@ -37,7 +37,12 @@ const ProtectedRoute = () => {
     return <div className="loader"></div>;
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/auth/login" />;
+  if (!isAuthenticated) {
+    localStorage.removeItem("token");
+    return <Navigate to="/auth/login" />;
+  }
+
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

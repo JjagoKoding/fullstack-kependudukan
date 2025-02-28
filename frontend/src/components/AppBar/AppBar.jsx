@@ -3,7 +3,7 @@ import "./AppBar.css";
 
 const AppBar = ({ toggleSidebar, auth }) => {
   const [dropdown, setDropdown] = useState(false);
-  const dropdownRef = useRef(null); // Gunakan ref untuk mendeteksi klik di luar elemen
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

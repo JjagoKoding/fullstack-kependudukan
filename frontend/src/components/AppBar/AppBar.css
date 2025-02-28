@@ -1,0 +1,85 @@
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 270px);
+  height: 70px;
+  margin-left: 270px;
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  border-bottom: 1px solid rgb(229, 234, 239);
+  padding: 0 24px;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+.app-bar .group {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.app-bar .search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  padding: 12px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.app-bar .toggle-app-bar {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.app-bar .search:hover {
+  background-color: rgb(233, 242, 241);
+  color: #018c79;
+  stroke: #018c79;
+}
+
+.app-bar .profile {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  user-select: none;
+  border: none;
+}
+
+.profile .avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .app-bar {
+    width: 100%;
+    margin-left: 0px;
+    transition: all 0.4s ease;
+  }
+  .app-bar .toggle-app-bar {
+    display: inline-flex;
+  }
+}

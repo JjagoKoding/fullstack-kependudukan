@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Api;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 
 class ProvinsiController extends Controller
 {
@@ -12,7 +15,7 @@ class ProvinsiController extends Controller
      */
     public function index()
     {
-        //
+        return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', Provinsi::get());
     }
 
     /**
@@ -28,7 +31,18 @@ class ProvinsiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validasi = $request->validate([
+                'nama_provinsi' => 'required',
+            ], [
+                'nama_provinsi.required' => 'Nama provinsi wajib diisi.'
+            ]);
+            $provinsi = Provinsi::create($validasi);
+            return Api::make(Response::HTTP_OK, 'Data berhasil dibuat.', $provinsi);
+        }
+        catch (ValidationException $e) {
+            return Api::make(422, 'Validation failed', $e->errors());
+        }
     }
 
     /**
@@ -36,7 +50,7 @@ class ProvinsiController extends Controller
      */
     public function show(Provinsi $provinsi)
     {
-        //
+        return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', $provinsi);
     }
 
     /**
@@ -52,7 +66,18 @@ class ProvinsiController extends Controller
      */
     public function update(Request $request, Provinsi $provinsi)
     {
-        //
+        try {
+            $validasi = $request->validate([
+                'nama_provinsi' => 'required',
+            ], [
+                'nama_provinsi.required' => 'Nama provinsi wajib diisi.'
+            ]);
+            $provinsi->update($validasi);
+            return Api::make(Response::HTTP_OK, 'Data berhasil diubah.', $provinsi);
+        }
+        catch (ValidationException $e) {
+            return Api::make(422, 'Validation failed', $e->errors());
+        }
     }
 
     /**
@@ -60,6 +85,7 @@ class ProvinsiController extends Controller
      */
     public function destroy(Provinsi $provinsi)
     {
-        //
+        $provinsi->delete();
+        return Api::make(Response::HTTP_OK, 'Data berhasil dihapus.', null);
     }
 }

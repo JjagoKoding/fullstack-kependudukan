@@ -1,6 +1,6 @@
 import "./Modal.css";
 
-const Modal = ({ isOpen, onClose }) => {
+const Modal = ({ isOpen, onClose, children }) => {
   return (
     <div className={`modal ${isOpen ? "open" : ""}`}>
       <div className="modal-overlay" onClick={onClose} />
@@ -8,7 +8,7 @@ const Modal = ({ isOpen, onClose }) => {
         <div className="modal-header">
           <div>
             <h2>Create Provinsi</h2>
-            <p className="modal-description" >For create provinsi data.</p>
+            <p className="modal-description">For create provinsi data.</p>
           </div>
           <button className="close-button" onClick={onClose}>
             <svg
@@ -28,13 +28,18 @@ const Modal = ({ isOpen, onClose }) => {
           </button>
         </div>
         <form className="modal-form">
+          {children}
           <div className="modal-footer">
             <button
               type="button"
               className="button secondary"
               onClick={onClose}
-            >Cancel</button>
-            <button type="submit" className="button primary" >Submit</button>
+            >
+              Cancel
+            </button>
+            <button type="submit" className="button primary">
+              Submit
+            </button>
           </div>
         </form>
       </div>

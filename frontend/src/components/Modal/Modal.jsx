@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./Modal.css";
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, onClose, children, setSubmit, modalTitle, modalDesc }) => {
   const formRef = useRef(null);
 
   useEffect(() => {
@@ -9,14 +9,15 @@ const Modal = ({ isOpen, onClose, children }) => {
       formRef.current.reset();
     }
   }, [isOpen]);
+
   return (
     <div className={`modal ${isOpen ? "open" : ""}`}>
       <div className="modal-overlay" onClick={onClose} />
       <div className="modal-container">
         <div className="modal-header">
           <div>
-            <h2>Create Provinsi</h2>
-            <p className="modal-description">For create provinsi data.</p>
+            <h2>{modalTitle}</h2>
+            <p className="modal-description">{modalDesc}</p>
           </div>
           <button className="close-button" onClick={onClose}>
             <svg
@@ -35,7 +36,10 @@ const Modal = ({ isOpen, onClose, children }) => {
             </svg>
           </button>
         </div>
-        <form ref={formRef} className="modal-form">
+        <form ref={formRef} className="modal-form" onSubmit={e => {
+          e.preventDefault();
+          setSubmit();
+        }}>
           {children}
           <div className="modal-footer">
             <button

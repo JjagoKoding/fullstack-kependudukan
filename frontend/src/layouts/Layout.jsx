@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import AppBar from "../components/AppBar/AppBar";
 import Sidebar from "../components/Sidebar/Sidebar";
-import PageHeader from "../components/PageHeader/PageHeader";
 
 export default function Layout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -33,11 +32,12 @@ export default function Layout({ children }) {
     <>
       {!loading ? (
         <>
-        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <AppBar toggleSidebar={toggleSidebar} auth={petugas} />
-        <main>
-          {children}
-        </main>
+          <Sidebar
+            isSidebarOpen={isSidebarOpen}
+            toggleSidebar={toggleSidebar}
+          />
+          <AppBar toggleSidebar={toggleSidebar} auth={petugas} />
+          <main>{children}</main>
         </>
       ) : (
         <div className="loader"></div>
@@ -46,4 +46,8 @@ export default function Layout({ children }) {
   );
 }
 
-Layout.Main = ({ children }) => <section className="main-section">{children}</section>
+Layout.Main = ({ children }) => (
+  <section className="main-section">{children}</section>
+);
+
+Layout.Toast = ({ children }) => <div id="toast-container">{children}</div>;

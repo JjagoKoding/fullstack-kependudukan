@@ -1,6 +1,6 @@
 import "./PageHeader.css";
 
-const PageHeader = ({ hasGroup, breadcrumbsLink, breadcrumbsPath, heading, handleEvent }) => {
+const PageHeader = ({ hasGroup, breadcrumbsLink, breadcrumbsPath, heading, handleEvent, handleSearch }) => {
   return (
     <section className={`page-header ${!hasGroup ? "alt" : ""}`}>
       <div>
@@ -53,7 +53,7 @@ const PageHeader = ({ hasGroup, breadcrumbsLink, breadcrumbsPath, heading, handl
                   <path d="M21 21l-6 -6" />
                 </svg>
               </div>
-              <input type="search" placeholder="Search..." />
+              <input type="search" placeholder="Search..." onChange={handleSearch}/>
             </div>
             <a className="group2-item" onClick={handleEvent}>
               <span>New Item</span>

@@ -7,6 +7,7 @@ export default function Layout({ children }) {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const [petugas, setPetugas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [avatarURL, setAvatarURL] = useState(null);
 
   const handlePetugas = async () => {
     const token = localStorage.getItem("token");
@@ -20,8 +21,22 @@ export default function Layout({ children }) {
     });
 
     const data = await res.json();
+    avatar(data.id_petugas);
     setPetugas(data);
     setLoading(false);
+  };
+
+  const avatar = async (id) => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`http://127.0.0.1:8000/api/avatar/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    setAvatarURL(url);
   };
 
   useEffect(() => {
@@ -36,7 +51,11 @@ export default function Layout({ children }) {
             isSidebarOpen={isSidebarOpen}
             toggleSidebar={toggleSidebar}
           />
-          <AppBar toggleSidebar={toggleSidebar} auth={petugas} />
+          <AppBar
+            toggleSidebar={toggleSidebar}
+            auth={petugas}
+            avatarURL={avatarURL}
+          />
           <main>{children}</main>
         </>
       ) : (

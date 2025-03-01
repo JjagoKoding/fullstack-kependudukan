@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use finfo;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
 
 class AuthController extends Controller
 {
@@ -31,7 +33,15 @@ class AuthController extends Controller
 
     public function profile(Request $request)
     {
-        return response()->json($request->user());
+        return response()->json(collect($request->user())->except('image'));
+    }
+
+    public function avatar($id)
+    {
+        $image = Petugas::findOrFail($id);
+
+        return response($image->image)
+            ->header('Content-Type', 'image/jpeg');
     }
 
     public function logout(Request $request)

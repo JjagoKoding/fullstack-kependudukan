@@ -16,6 +16,7 @@ class Petugas extends Authenticatable
         'nama_petugas',
         'username',
         'password',
+        'image',
     ];
 
     public $timestamps = false;

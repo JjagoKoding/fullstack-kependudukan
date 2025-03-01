@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -16,6 +17,7 @@ return new class extends Migration
             $table->string('nama_petugas');
             $table->string('username')->unique();
             $table->string('password');
+            $table->binary('image');
         });
     }
 

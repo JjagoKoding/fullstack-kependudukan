@@ -1,6 +1,6 @@
-export const getProvinsi = async () => {
+export const getProvinsi = async (search) => {
   try {
-    const response = await fetch("/api/provinsi");
+    const response = await fetch(`/api/provinsi?search=${search}`);
     return await response.json();
   } catch (error) {
     console.error("Error saat ambil data:", error);

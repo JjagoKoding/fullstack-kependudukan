@@ -13,9 +13,10 @@ class ProvinsiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', Provinsi::get());
+        $search = $request->input('search');
+        return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', Provinsi::where('nama_provinsi', 'like', "%$search%")->get());
     }
 
     /**

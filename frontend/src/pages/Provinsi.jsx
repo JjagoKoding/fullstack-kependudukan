@@ -27,11 +27,16 @@ export default function Provinsi() {
 
   useEffect(() => {
     const loadData = async () => {
-      const data = await getProvinsi();
+      const data = await getProvinsi("");
       setProvinsi(data.data);
     };
     loadData();
   }, [refresh]);
+
+  const handleSearch = async (search) => {
+    const data = await getProvinsi(search);
+    setProvinsi(data.data);
+  }
 
   const handleCreateModalOpen = () => {
     setError([]);
@@ -59,7 +64,7 @@ export default function Provinsi() {
       set_nama_provinsi(data.data.nama_provinsi);
       setEditModalOpen(true);
       setLoading(false);
-    }, 700);
+    }, 450);
   };
 
   const handleUpdate = async () => {
@@ -76,7 +81,7 @@ export default function Provinsi() {
       setSelectedProvinsi(data.data);
       setDeleteModalOpen(true);
       setLoading(false);
-    }, 700);
+    }, 450);
   };
 
   const handleDelete = async () => {
@@ -93,6 +98,7 @@ export default function Provinsi() {
         breadcrumbsPath={`Provinsi`}
         heading={`Kelola Provinsi`}
         handleEvent={handleCreateModalOpen}
+        handleSearch={e => handleSearch(e.target.value)}
       />
       <Layout.Main>
         <Table>

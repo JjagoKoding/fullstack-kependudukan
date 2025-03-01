@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./AppBar.css";
 
-const AppBar = ({ toggleSidebar, auth }) => {
+const AppBar = ({ toggleSidebar, auth, avatarURL }) => {
   const [dropdown, setDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -65,7 +65,7 @@ const AppBar = ({ toggleSidebar, auth }) => {
             setDropdown(!dropdown);
           }}
         >
-          <img className="avatar" />
+          <img className="avatar" src={avatarURL} />
         </button>
         <div className={`dropdown-menu ${dropdown ? "active" : ""}`}>
           <div className="dropdown-header">

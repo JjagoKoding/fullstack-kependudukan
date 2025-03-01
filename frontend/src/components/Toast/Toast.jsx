@@ -4,11 +4,11 @@ const Toast = ({ type, content }) => {
   let toastIcon;
 
   if (type === "success") {
-    toastIcon = <i class="fas fa-check-circle"></i>;
+    toastIcon = <i className="fas fa-check-circle"></i>;
   } else if (type === "error") {
-    toastIcon = <i class="fas fa-times-circle"></i>;
+    toastIcon = <i className="fas fa-times-circle"></i>;
   } else {
-    toastIcon = <i class="fas fa-spinner"></i>;
+    toastIcon = <i className="fas fa-spinner"></i>;
   }
 
   return (

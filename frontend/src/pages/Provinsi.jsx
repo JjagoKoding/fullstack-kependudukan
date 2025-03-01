@@ -36,7 +36,7 @@ export default function Provinsi() {
   const handleSearch = async (search) => {
     const data = await getProvinsi(search);
     setProvinsi(data.data);
-  }
+  };
 
   const handleCreateModalOpen = () => {
     setError([]);
@@ -68,9 +68,16 @@ export default function Provinsi() {
   };
 
   const handleUpdate = async () => {
-    await updateProvinsi({ nama_provinsi }, selectedProvinsi.id_provinsi);
-    setEditModalOpen(false);
-    setRefresh((prev) => !prev);
+    const res = await updateProvinsi(
+      { nama_provinsi },
+      selectedProvinsi.id_provinsi
+    );
+    if (res.status == 422) {
+      setError(res.data);
+    } else if (res.status == 200) {
+      setEditModalOpen(false);
+      setRefresh((prev) => !prev);
+    }
   };
 
   const handleDeleteModal = async (id) => {
@@ -98,7 +105,7 @@ export default function Provinsi() {
         breadcrumbsPath={`Provinsi`}
         heading={`Kelola Provinsi`}
         handleEvent={handleCreateModalOpen}
-        handleSearch={e => handleSearch(e.target.value)}
+        handleSearch={(e) => handleSearch(e.target.value)}
       />
       <Layout.Main>
         <Table>
@@ -191,6 +198,7 @@ export default function Provinsi() {
             contentLabel={`Provinsi`}
             setValue={nama_provinsi}
             setOnChange={(e) => set_nama_provinsi(e.target.value)}
+            setError={error.nama_provinsi}
           />
         </Modal>
         <Modal

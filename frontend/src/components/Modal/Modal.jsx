@@ -1,6 +1,14 @@
+import { useEffect, useRef } from "react";
 import "./Modal.css";
 
 const Modal = ({ isOpen, onClose, children }) => {
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen && formRef.current) {
+      formRef.current.reset();
+    }
+  }, [isOpen]);
   return (
     <div className={`modal ${isOpen ? "open" : ""}`}>
       <div className="modal-overlay" onClick={onClose} />
@@ -27,7 +35,7 @@ const Modal = ({ isOpen, onClose, children }) => {
             </svg>
           </button>
         </div>
-        <form className="modal-form">
+        <form ref={formRef} className="modal-form">
           {children}
           <div className="modal-footer">
             <button

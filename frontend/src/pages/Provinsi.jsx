@@ -54,14 +54,18 @@ export default function Provinsi() {
     }
   };
 
+  useEffect(() => {
+    if (selectedProvinsi) {
+      set_nama_provinsi(selectedProvinsi.nama_provinsi || "");
+    }
+  }, [selectedProvinsi]);
+
   const handleEdit = async (id) => {
     setError([]);
     setLoading(true);
     setTimeout(async () => {
-      set_nama_provinsi("");
       const data = await showProvinsi(id);
       setSelectedProvinsi(data.data);
-      set_nama_provinsi(data.data.nama_provinsi);
       setEditModalOpen(true);
       setLoading(false);
     }, 450);

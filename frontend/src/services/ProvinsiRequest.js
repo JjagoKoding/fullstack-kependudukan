@@ -45,7 +45,7 @@ export const updateProvinsi = async (request, id) => {
     });
     return await response.json();
   } catch (error) {
-    console.error("Error saat post data:", error);
+    console.error("Error saat update data:", error);
     throw error;
   }
 };

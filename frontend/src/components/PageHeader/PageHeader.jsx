@@ -1,6 +1,6 @@
 import "./PageHeader.css";
 
-const PageHeader = ({ hasGroup }) => {
+const PageHeader = ({ hasGroup, breadcrumbsLink, breadcrumbsPath, heading, handleEvent }) => {
   return (
     <section className={`page-header ${!hasGroup ? "alt" : ""}`}>
       <div>
@@ -8,7 +8,7 @@ const PageHeader = ({ hasGroup }) => {
           <ol className="breadcrumbs-list">
             <li className="breadcrumbs-item">
               <a href="" className="breadcrumbs-label">
-                Wilayah
+                {breadcrumbsLink}
               </a>
             </li>
             <li className="breadcrumbs-item">
@@ -25,11 +25,11 @@ const PageHeader = ({ hasGroup }) => {
                   clipRule="evenodd"
                 />
               </svg>
-              <span className="breadcrumbs-path">Provinsi</span>
+              <span className="breadcrumbs-path">{breadcrumbsPath}</span>
             </li>
           </ol>
         </nav>
-        <h1 className="heading-text">Kelola Provinsi</h1>
+        <h1 className="heading-text">{heading}</h1>
       </div>
       {hasGroup && (
         <div className="group2">
@@ -55,7 +55,7 @@ const PageHeader = ({ hasGroup }) => {
               </div>
               <input type="search" placeholder="Search..." />
             </div>
-            <a href="" className="group2-item">
+            <a className="group2-item" onClick={handleEvent}>
               <span>New Item</span>
             </a>
           </div>

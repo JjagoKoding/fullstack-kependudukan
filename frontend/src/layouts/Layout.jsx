@@ -3,7 +3,7 @@ import AppBar from "../components/AppBar/AppBar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import PageHeader from "../components/PageHeader/PageHeader";
 
-export default function Layout({ children, hasGroup }) {
+export default function Layout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const [petugas, setPetugas] = useState([]);
@@ -36,8 +36,7 @@ export default function Layout({ children, hasGroup }) {
         <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <AppBar toggleSidebar={toggleSidebar} auth={petugas} />
         <main>
-          <PageHeader hasGroup={hasGroup} />
-          <section className="main-section">{children}</section>
+          {children}
         </main>
         </>
       ) : (
@@ -46,3 +45,5 @@ export default function Layout({ children, hasGroup }) {
     </>
   );
 }
+
+Layout.Main = ({ children }) => <section className="main-section">{children}</section>

@@ -1,6 +1,6 @@
 import "./Field.css";
 
-const Field = ({ placeHolder, type, data, contentLabel, setValue, setOnChange }) => {
+const Field = ({ placeHolder, type, data, contentLabel, setValue, setOnChange, setError }) => {
   return (
     <div className="form-group">
       <label htmlFor={`input_${data}`}>{contentLabel}</label>
@@ -12,7 +12,7 @@ const Field = ({ placeHolder, type, data, contentLabel, setValue, setOnChange })
         value={setValue}
         onChange={setOnChange}
       />
-      <span className="error-input" id={`error_${data}`}></span>
+      <span className="error-input" id={`error_${data}`}>{setError && setError}</span>
     </div>
   );
 };

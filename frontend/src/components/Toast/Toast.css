@@ -92,7 +92,6 @@
     display: block;
 }
 
-/* Animations */
 @keyframes slideIn {
     from {
         transform: translateX(100%) translateY(15%);

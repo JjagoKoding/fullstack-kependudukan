@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama_petugas');
             $table->string('username')->unique();
             $table->string('password');
-            $table->binary('image');
+            $table->binary('image')->nullable();
         });
     }
 

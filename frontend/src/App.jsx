@@ -3,6 +3,7 @@ import Provinsi from "./pages/Provinsi";
 import Login from "./pages/Login";
 import GuestRoute from "./routes/GuestRoute";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import KotaKabupaten from "./pages/KotaKabupaten";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
 
         <Route path="admin" element={<ProtectedRoute />}>
           <Route path="provinsi" element={<Provinsi />} />
+          <Route path="kota-kabupaten" element={<KotaKabupaten />} />
         </Route>
       </Routes>
     </Router>

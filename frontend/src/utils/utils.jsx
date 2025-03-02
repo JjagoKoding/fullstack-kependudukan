@@ -40,7 +40,7 @@ export const SidebarMenu = [
   {
     type: "sub-menu",
     label: "Kota & Kabupaten",
-    path: "#",
+    path: "/admin/kota-kabupaten",
     icon: <KotaKabupatenIcon/>,
   },
   {
@@ -76,4 +76,16 @@ export const ColumnProvinsi = [
   {
     title: "Nama Provinsi"
   }
+];
+
+export const ColumnKotaKabupaten = [
+  {
+    title: "#"
+  },
+  {
+    title: "Kota & Kabupaten"
+  },
+  {
+    title: "Provinsi"
+  },
 ];

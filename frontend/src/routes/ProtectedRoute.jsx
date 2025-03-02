@@ -30,7 +30,7 @@ const ProtectedRoute = () => {
 
     setTimeout(() => {
       checkAuth();
-    }, 1500);
+    }, 1700);
   }, []);
 
   if (isAuthenticated === null) {

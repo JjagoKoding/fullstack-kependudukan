@@ -13,6 +13,15 @@
   font-family: "Plus Jakarta Sans";
 }
 
+@keyframes tes {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -42,6 +51,7 @@ main {
   margin-top: 70px;
   margin-left: 270px;
   transition: all 0.4s ease;
+  animation: fadeIn 1.25s ease forwards;
 }
 
 .main-section {

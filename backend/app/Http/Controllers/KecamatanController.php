@@ -6,6 +6,7 @@ use App\Helpers\Api;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 
 class KecamatanController extends Controller
 {
@@ -34,7 +35,20 @@ class KecamatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validasi = $request->validate([
+                'nama_kecamatan' => 'required',
+                'id_kota_kabupaten' => 'required|exists:tb_kota_kabupaten,id_kota_kabupaten'
+            ], [
+                'nama_kecamatan.required' => 'Nama Kecamatan wajib diisi.',
+                'id_kota_kabupaten.required' => 'Kota & Kabupaten wajib diisi.',
+                'id_kota_kabupaten.exists' => 'Kota & Kabupaten tidak valid.',
+            ]);
+            $kecamatan = Kecamatan::create($validasi);
+            return Api::make(Response::HTTP_OK, 'Data berhasil dibuat.', $kecamatan);
+        } catch (ValidationException $e) {
+            return Api::make(422, 'Validation failed', $e->errors());
+        }
     }
 
     /**
@@ -42,7 +56,7 @@ class KecamatanController extends Controller
      */
     public function show(Kecamatan $kecamatan)
     {
-        //
+        return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', $kecamatan);
     }
 
     /**
@@ -58,7 +72,20 @@ class KecamatanController extends Controller
      */
     public function update(Request $request, Kecamatan $kecamatan)
     {
-        //
+        try {
+            $validasi = $request->validate([
+                'nama_kecamatan' => 'required',
+                'id_kota_kabupaten' => 'required|exists:tb_kota_kabupaten,id_kota_kabupaten'
+            ], [
+                'nama_kecamatan.required' => 'Nama Kecamatan wajib diisi.',
+                'id_kota_kabupaten.required' => 'Kota & Kabupaten wajib diisi.',
+                'id_kota_kabupaten.exists' => 'Kota & Kabupaten tidak valid.',
+            ]);
+            $kecamatan->update($validasi);
+            return Api::make(Response::HTTP_OK, 'Data berhasil diedit.', $kecamatan);
+        } catch (ValidationException $e) {
+            return Api::make(422, 'Validation failed', $e->errors());
+        }
     }
 
     /**
@@ -66,6 +93,7 @@ class KecamatanController extends Controller
      */
     public function destroy(Kecamatan $kecamatan)
     {
-        //
+        $kecamatan->delete();
+        return Api::make(Response::HTTP_OK, 'Data berhasil dihapus.', null);
     }
 }

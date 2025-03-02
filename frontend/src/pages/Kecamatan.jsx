@@ -1,7 +1,14 @@
 import Layout from "../layouts/Layout";
 import Table from "../components/Table/Table";
 import { ColumnKecamatan } from "../utils/utils";
-import { getKecamatan, getKotaKabupaten } from "../services/KecamatanRequest";
+import {
+  getKecamatan,
+  getKotaKabupaten,
+  storeKecamatan,
+  showKecamatan,
+  updateKecamatan,
+  deleteKecamatan,
+} from "../services/KecamatanRequest";
 import { useState, useEffect } from "react";
 import Modal from "../components/Modal/Modal";
 import PageHeader from "../components/PageHeader/PageHeader";
@@ -29,19 +36,85 @@ const Kecamatan = () => {
     loadData();
   }, [refresh]);
 
+  const handleSearch = async (search) => {
+      const data = await getKecamatan(search);
+      setKecamatan(data.data);
+    };
+
   useEffect(() => {
-      const loadKotaKabupaten = async () => {
-        const data = await getKotaKabupaten();
-        setKotaKabupatenDropdown(data.data);
-      };
-      loadKotaKabupaten();
-    }, []);
+    const loadKotaKabupaten = async () => {
+      const data = await getKotaKabupaten();
+      setKotaKabupatenDropdown(data.data);
+    };
+    loadKotaKabupaten();
+  }, []);
 
   const handleCreateModalOpen = () => {
     setError([]);
     setNamaKecamatan("");
     setKotaKabupaten("");
     setCreateModalOpen(true);
+  };
+
+  const handleCreate = async () => {
+    const res = await storeKecamatan({
+      nama_kecamatan: namaKecamatan,
+      id_kota_kabupaten: kotaKabupaten,
+    });
+    if (res.status == 422) {
+      setError(res.data);
+    } else if (res.status == 200) {
+      setCreateModalOpen(false);
+      setRefresh((prev) => !prev);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedKecamatan) {
+      setNamaKecamatan(selectedKecamatan.nama_kecamatan || "");
+      setKotaKabupaten(selectedKecamatan.id_kota_kabupaten || "");
+    }
+  }, [selectedKecamatan]);
+
+  const handleEdit = async (id) => {
+    setError([]);
+    setLoading(true);
+    setTimeout(async () => {
+      const data = await showKecamatan(id);
+      setSelectedKecamatan(data.data);
+      setEditModalOpen(true);
+      setLoading(false);
+    }, 450);
+  };
+
+  const handleUpdate = async () => {
+    const res = await updateKecamatan(
+      { nama_kecamatan: namaKecamatan, id_kota_kabupaten: kotaKabupaten },
+      selectedKecamatan.id_kecamatan
+    );
+    if (res.status == 422) {
+      setError(res.data);
+    } else if (res.status == 200) {
+      setEditModalOpen(false);
+      setRefresh((prev) => !prev);
+    }
+  };
+
+  const handleDeleteModal = async (id) => {
+    setLoading(true);
+    setTimeout(async () => {
+      setSelectedKecamatan([]);
+      const data = await showKecamatan(id);
+      setSelectedKecamatan(data.data);
+      setDeleteModalOpen(true);
+      setLoading(false);
+    }, 450);
+  };
+
+  const handleDelete = async () => {
+    await deleteKecamatan(selectedKecamatan.id_kecamatan);
+    setDeleteModalOpen(false);
+    setRefresh((prev) => !prev);
   };
 
   return (
@@ -52,7 +125,7 @@ const Kecamatan = () => {
         breadcrumbsPath={`Kecamatan`}
         heading={`Kelola Kecamatan`}
         handleEvent={handleCreateModalOpen}
-        // handleSearch={(e) => handleSearch(e.target.value)}
+        handleSearch={(e) => handleSearch(e.target.value)}
       />
       <Layout.Main>
         <Table>
@@ -67,7 +140,7 @@ const Kecamatan = () => {
                 <td className="action-group">
                   <div
                     className="edit"
-                    // onClick={() => handleEdit(val.id_provinsi)}
+                    onClick={() => handleEdit(val.id_kecamatan)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +162,7 @@ const Kecamatan = () => {
                   </div>
                   <div
                     className="delete"
-                    // onClick={() => handleDeleteModal(val.id_provinsi)}
+                    onClick={() => handleDeleteModal(val.id_kecamatan)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -119,15 +192,15 @@ const Kecamatan = () => {
         <Modal
           isOpen={isCreateModalOpen}
           onClose={() => setCreateModalOpen(false)}
-        //   setSubmit={handleCreate}
-          modalTitle={`Create Provinsi`}
-          modalDesc={`For create provinsi data.`}
+          setSubmit={handleCreate}
+          modalTitle={`Create Kecamatan`}
+          modalDesc={`For create kecamatan data.`}
         >
           <Field
             placeHolder={`Masukkan nama kecamatan ...`}
             type={`text`}
             data={`create_kecamatan`}
-            contentLabel={`Kecamayan`}
+            contentLabel={`Kecamatan`}
             setValue={namaKecamatan}
             setOnChange={(e) => setNamaKecamatan(e.target.value)}
             setError={error.nama_kabupaten}
@@ -150,32 +223,49 @@ const Kecamatan = () => {
             ))}
           </Field>
         </Modal>
-        {/* <Modal
+        <Modal
           isOpen={isEditModalOpen}
           onClose={() => setEditModalOpen(false)}
           setSubmit={handleUpdate}
-          modalTitle={`Edit Provinsi`}
-          modalDesc={`For edit provinsi data.`}
+          modalTitle={`Edit Kecamatan`}
+          modalDesc={`For edit kecamatan data.`}
         >
           <Field
-            placeHolder={`Masukkan nama provinsi ...`}
+            placeHolder={`Masukkan nama kecamatan ...`}
             type={`text`}
-            data={`edit_provinsi`}
-            contentLabel={`Provinsi`}
-            setValue={nama_provinsi}
-            setOnChange={(e) => set_nama_provinsi(e.target.value)}
-            setError={error.nama_provinsi}
+            data={`update_kecamatan`}
+            contentLabel={`Kecamatan`}
+            setValue={namaKecamatan}
+            setOnChange={(e) => setNamaKecamatan(e.target.value)}
+            setError={error.nama_kabupaten}
           />
+          <Field
+            type={`select`}
+            data={`update_kota_kabupaten`}
+            contentLabel={`Kota & Kabupaten`}
+            selectValue={kotaKabupaten}
+            setOnChange={(e) => setKotaKabupaten(e.target.value)}
+            setError={error.id_provinsi}
+          >
+            <option value="" disabled hidden>
+              Pilih Provinsi
+            </option>
+            {kotaKabupatenDropdown.map((val) => (
+              <option key={val.id_kota_kabupaten} value={val.id_kota_kabupaten}>
+                {val.kota_kabupaten} - {val.provinsi.nama_provinsi}
+              </option>
+            ))}
+          </Field>
         </Modal>
         <Modal
           isOpen={isDeleteModalOpen}
           onClose={() => setDeleteModalOpen(false)}
           setSubmit={handleDelete}
-          modalTitle={`Delete Provinsi`}
+          modalTitle={`Delete Kecamatan`}
           modalDesc={`Anda yakin ingin menghapus ${
-            selectedProvinsi.nama_provinsi ? selectedProvinsi.nama_provinsi : ""
+            selectedKecamatan.nama_kecamatan ? selectedKecamatan.nama_kecamatan : ""
           }.`}
-        /> */}
+        />
       </Layout.Main>
       {loading && (
         <Layout.Toast>

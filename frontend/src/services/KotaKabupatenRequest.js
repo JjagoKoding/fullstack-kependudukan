@@ -8,7 +8,7 @@ export const getKotaKabupaten = async (search) => {
   }
 };
 
-export const getProvinsi = async (search) => {
+export const getProvinsi = async () => {
   try {
     const response = await fetch(`/api/provinsi`);
     return await response.json();

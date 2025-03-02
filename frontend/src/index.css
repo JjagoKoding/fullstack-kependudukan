@@ -51,7 +51,7 @@ main {
   margin-top: 70px;
   margin-left: 270px;
   transition: all 0.4s ease;
-  animation: tes 1.25s ease;
+  /* animation: tes 1.25s ease; */
 }
 
 .main-section {

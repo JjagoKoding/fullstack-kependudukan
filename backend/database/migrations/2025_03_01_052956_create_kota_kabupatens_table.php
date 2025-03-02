@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->enum('jenis', ['Kota', 'Kabupaten']);
             $table->unsignedBigInteger('id_provinsi')->nullable();
-            $table->foreign('id_provinsi')->references('id_provinsi')->on('tb_provinsi')->nullOnDelete();
+            $table->foreign('id_provinsi')->references('id_provinsi')->on('tb_provinsi')->cascadeOnDelete();
         });
     }
 

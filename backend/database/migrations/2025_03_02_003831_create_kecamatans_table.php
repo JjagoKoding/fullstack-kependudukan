@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_kecamatan');
             $table->string('nama_kecamatan');
             $table->unsignedBigInteger('id_kota_kabupaten')->nullable();
-            $table->foreign('id_kota_kabupaten')->references('id_kota_kabupaten')->on('tb_kota_kabupaten')->nullOnDelete();
+            $table->foreign('id_kota_kabupaten')->references('id_kota_kabupaten')->on('tb_kota_kabupaten')->cascadeOnDelete();
         });
     }
 

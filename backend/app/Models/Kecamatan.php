@@ -14,4 +14,8 @@ class Kecamatan extends Model
     public function kotakabupaten() {
         return $this->belongsTo(KotaKabupaten::class, 'id_kota_kabupaten');
     }
+
+    public function desakelurahan() {
+        return $this->hasMany(DesaKelurahan::class, 'id_kecamatan');
+    }
 }

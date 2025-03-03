@@ -1,4 +1,14 @@
-import { DesaKelurahanIcon, HomeIcon, KecamatanIcon, KeluargaIcon, KotaKabupatenIcon, PendudukIcon, ProvinsiIcon, RTIcon, RWIcon,  } from "./icons";
+import {
+  DesaKelurahanIcon,
+  HomeIcon,
+  KecamatanIcon,
+  KeluargaIcon,
+  KotaKabupatenIcon,
+  PendudukIcon,
+  ProvinsiIcon,
+  RTIcon,
+  RWIcon,
+} from "./icons";
 
 export const SidebarMenu = [
   {
@@ -9,7 +19,7 @@ export const SidebarMenu = [
     type: "sub-menu",
     label: "Home",
     path: "/admin/home",
-    icon: <HomeIcon/>,
+    icon: <HomeIcon />,
   },
   {
     type: "sub-header",
@@ -19,13 +29,13 @@ export const SidebarMenu = [
     type: "sub-menu",
     label: "Penduduk",
     path: "/admin/penduduk",
-    icon: <PendudukIcon/>,
+    icon: <PendudukIcon />,
   },
   {
     type: "sub-menu",
     label: "Keluarga",
     path: "/admin/keluarga",
-    icon: <KeluargaIcon/>,
+    icon: <KeluargaIcon />,
   },
   {
     type: "sub-header",
@@ -35,72 +45,90 @@ export const SidebarMenu = [
     type: "sub-menu",
     label: "Provinsi",
     path: "/admin/provinsi",
-    icon: <ProvinsiIcon/>,
+    icon: <ProvinsiIcon />,
   },
   {
     type: "sub-menu",
     label: "Kota & Kabupaten",
     path: "/admin/kota-kabupaten",
-    icon: <KotaKabupatenIcon/>,
+    icon: <KotaKabupatenIcon />,
   },
   {
     type: "sub-menu",
     label: "Kecamatan",
     path: "/admin/kecamatan",
-    icon: <KecamatanIcon/>,
+    icon: <KecamatanIcon />,
   },
   {
     type: "sub-menu",
     label: "Desa & Kelurahan",
     path: "#",
-    icon: <DesaKelurahanIcon/>,
+    icon: <DesaKelurahanIcon />,
   },
   {
     type: "sub-menu",
     label: "RW",
     path: "#",
-    icon: <RWIcon/>,
+    icon: <RWIcon />,
   },
   {
     type: "sub-menu",
     label: "RT",
     path: "#",
-    icon: <RTIcon/>,
+    icon: <RTIcon />,
   },
 ];
 
 export const ColumnProvinsi = [
   {
-    title: "#"
+    title: "#",
   },
   {
-    title: "Nama Provinsi"
-  }
+    title: "Nama Provinsi",
+  },
 ];
 
 export const ColumnKotaKabupaten = [
   {
-    title: "#"
+    title: "#",
   },
   {
-    title: "Kota & Kabupaten"
+    title: "Kota & Kabupaten",
   },
   {
-    title: "Provinsi"
+    title: "Provinsi",
   },
 ];
 
 export const ColumnKecamatan = [
   {
-    title: "#"
+    title: "#",
   },
   {
-    title: "Nama Kecamatan"
+    title: "Nama Kecamatan",
   },
   {
-    title: "Kota & Kabupaten"
+    title: "Kota & Kabupaten",
   },
   {
-    title: "Provinsi"
-  }
-]
+    title: "Provinsi",
+  },
+];
+
+export const ColumnDesaKelurahan = [
+  {
+    title: "#",
+  },
+  {
+    title: "Desa & Kelurahan",
+  },
+  {
+    title: "Kecamatan",
+  },
+  {
+    title: "Kota & Kabupaten",
+  },
+  {
+    title: "Provinsi",
+  },
+];

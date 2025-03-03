@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import GuestRoute from "./routes/GuestRoute";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import DesaKelurahan from "./pages/DesaKelurahan";
+import RW from "./pages/RW";
 
 const Provinsi = lazy(() => import("./pages/Provinsi"));
 const Login = lazy(() => import("./pages/Login"));
@@ -23,6 +24,7 @@ function App() {
             <Route path="kota-kabupaten" element={<KotaKabupaten />} />
             <Route path="kecamatan" element={<Kecamatan />} />
             <Route path="desa-kelurahan" element={<DesaKelurahan />} />
+            <Route path="rw" element={<RW />} />
           </Route>
         </Routes>
       </Suspense>

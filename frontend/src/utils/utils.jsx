@@ -4,6 +4,8 @@ import {
   KecamatanIcon,
   KeluargaIcon,
   KotaKabupatenIcon,
+  PekerjaanIcon,
+  PendidikanIcon,
   PendudukIcon,
   ProvinsiIcon,
   RTIcon,
@@ -77,6 +79,22 @@ export const SidebarMenu = [
     path: "/admin/rt",
     icon: <RTIcon />,
   },
+  {
+    type: "sub-header",
+    content: "RIWAYAT",
+  },
+  {
+    type: "sub-menu",
+    label: "Pendidikan",
+    path: "/admin/pendidikan",
+    icon: <PendidikanIcon />,
+  },
+  {
+    type: "sub-menu",
+    label: "Pekerjaan",
+    path: "#",
+    icon: <PekerjaanIcon />,
+  },
 ];
 
 export const ColumnProvinsi = [
@@ -133,6 +151,15 @@ export const ColumnDesaKelurahan = [
   },
   {
     title: "Provinsi",
+  },
+];
+
+export const ColumnPendidikan = [
+  {
+    title: "#",
+  },
+  {
+    title: "Keterangan",
   },
 ];
 

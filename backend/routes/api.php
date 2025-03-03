@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DesaKelurahanController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\ProvinsiController;
@@ -17,3 +18,4 @@ Route::get('/avatar/{id}', [AuthController::class, 'avatar']);
 Route::resource('provinsi', ProvinsiController::class);
 Route::resource('kota-kabupaten', KotaKabupatenController::class);
 Route::resource('kecamatan', KecamatanController::class);
+Route::resource('desa-kelurahan', DesaKelurahanController::class);

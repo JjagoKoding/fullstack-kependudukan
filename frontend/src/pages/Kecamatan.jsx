@@ -77,6 +77,7 @@ const Kecamatan = () => {
   }, [selectedKecamatan]);
 
   const handleEdit = async (id) => {
+    setSelectedKecamatan([]);
     setError([]);
     setLoading(true);
     setTimeout(async () => {

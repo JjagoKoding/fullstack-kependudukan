@@ -81,6 +81,7 @@ const KotaKabupaten = () => {
   }, [selectedKotaKabupaten]);
 
   const handleEdit = async (id) => {
+    setSelectedKotaKabupaten([]);
     setError([]);
     setLoading(true);
     setTimeout(async () => {

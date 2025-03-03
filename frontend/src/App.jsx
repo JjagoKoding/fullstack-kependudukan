@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import GuestRoute from "./routes/GuestRoute";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import DesaKelurahan from "./pages/DesaKelurahan";
 
 const Provinsi = lazy(() => import("./pages/Provinsi"));
 const Login = lazy(() => import("./pages/Login"));
@@ -21,6 +22,7 @@ function App() {
             <Route path="provinsi" element={<Provinsi />} />
             <Route path="kota-kabupaten" element={<KotaKabupaten />} />
             <Route path="kecamatan" element={<Kecamatan />} />
+            <Route path="desa-kelurahan" element={<DesaKelurahan />} />
           </Route>
         </Routes>
       </Suspense>

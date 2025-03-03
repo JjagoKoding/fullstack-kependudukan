@@ -62,13 +62,13 @@ export const SidebarMenu = [
   {
     type: "sub-menu",
     label: "Desa & Kelurahan",
-    path: "#",
+    path: "/admin/desa-kelurahan",
     icon: <DesaKelurahanIcon />,
   },
   {
     type: "sub-menu",
     label: "RW",
-    path: "#",
+    path: "/admin/rw",
     icon: <RWIcon />,
   },
   {
@@ -120,6 +120,9 @@ export const ColumnDesaKelurahan = [
     title: "#",
   },
   {
+    title: "Kode Pos",
+  },
+  {
     title: "Desa & Kelurahan",
   },
   {
@@ -130,5 +133,23 @@ export const ColumnDesaKelurahan = [
   },
   {
     title: "Provinsi",
+  },
+];
+
+export const ColumnRW = [
+  {
+    title: "#",
+  },
+  {
+    title: "RW",
+  },
+];
+
+export const ColumnRT = [
+  {
+    title: "#",
+  },
+  {
+    title: "RT",
   },
 ];

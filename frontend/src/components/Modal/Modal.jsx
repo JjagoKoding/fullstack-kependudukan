@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./Modal.css";
 
-const Modal = ({ isOpen, onClose, children, setSubmit, modalTitle, modalDesc }) => {
+const Modal = ({ isOpen, onClose, children, setSubmit, modalTitle, modalDesc, wide = false }) => {
   const formRef = useRef(null);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const Modal = ({ isOpen, onClose, children, setSubmit, modalTitle, modalDesc }) 
   return (
     <div className={`modal ${isOpen ? "open" : ""}`}>
       <div className="modal-overlay" onClick={onClose} />
-      <div className="modal-container">
+      <div className={`modal-container ${wide ? "wide" : ""}`}>
         <div className="modal-header">
           <div>
             <h2>{modalTitle}</h2>

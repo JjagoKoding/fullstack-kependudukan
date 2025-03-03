@@ -10,11 +10,23 @@ const Field = ({
   setError,
   children,
   selectValue,
-  selectDefaultValue
+  selectDefaultValue,
 }) => {
   return (
     <div className="form-group">
       <label htmlFor={`input_${data}`}>{contentLabel}</label>
+      {type === "numeric" && (
+        <input
+          type={type}
+          id={`input_${data}`}
+          placeholder={placeHolder}
+          autoComplete="off"
+          value={setValue}
+          onChange={setOnChange}
+          pattern="\d*"
+          title="Hanya angka diperbolehkan"
+        />
+      )}
       {type === "text" && (
         <input
           type={type}
@@ -25,7 +37,16 @@ const Field = ({
           onChange={setOnChange}
         />
       )}
-      {type === "select" && <select id={`input_${data}`} value={selectValue} defaultValue={selectDefaultValue} onChange={setOnChange}>{children}</select>}
+      {type === "select" && (
+        <select
+          id={`input_${data}`}
+          value={selectValue}
+          defaultValue={selectDefaultValue}
+          onChange={setOnChange}
+        >
+          {children}
+        </select>
+      )}
       <span className="error-input" id={`error_${data}`}>
         {setError && setError}
       </span>

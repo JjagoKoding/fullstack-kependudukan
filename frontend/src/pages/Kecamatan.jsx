@@ -203,7 +203,7 @@ const Kecamatan = () => {
             contentLabel={`Kecamatan`}
             setValue={namaKecamatan}
             setOnChange={(e) => setNamaKecamatan(e.target.value)}
-            setError={error.nama_kabupaten}
+            setError={error.nama_kecamatan}
           />
           <Field
             type={`select`}
@@ -211,10 +211,10 @@ const Kecamatan = () => {
             contentLabel={`Kota & Kabupaten`}
             selectDefaultValue={``}
             setOnChange={(e) => setKotaKabupaten(e.target.value)}
-            setError={error.id_provinsi}
+            setError={error.id_kota_kabupaten}
           >
             <option value="" disabled hidden>
-              Pilih Provinsi
+              Pilih Kota & Kabupaten
             </option>
             {kotaKabupatenDropdown.map((val) => (
               <option key={val.id_kota_kabupaten} value={val.id_kota_kabupaten}>
@@ -237,7 +237,7 @@ const Kecamatan = () => {
             contentLabel={`Kecamatan`}
             setValue={namaKecamatan}
             setOnChange={(e) => setNamaKecamatan(e.target.value)}
-            setError={error.nama_kabupaten}
+            setError={error.nama_kecamatan}
           />
           <Field
             type={`select`}
@@ -245,10 +245,10 @@ const Kecamatan = () => {
             contentLabel={`Kota & Kabupaten`}
             selectValue={kotaKabupaten}
             setOnChange={(e) => setKotaKabupaten(e.target.value)}
-            setError={error.id_provinsi}
+            setError={error.id_kota_kabupaten}
           >
             <option value="" disabled hidden>
-              Pilih Provinsi
+              Pilih Kota & Kabupaten
             </option>
             {kotaKabupatenDropdown.map((val) => (
               <option key={val.id_kota_kabupaten} value={val.id_kota_kabupaten}>

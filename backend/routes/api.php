@@ -6,6 +6,7 @@ use App\Http\Controllers\DesaKelurahanController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\ProvinsiController;
+use App\Http\Controllers\RTController;
 use App\Http\Controllers\RWController;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -21,3 +22,4 @@ Route::resource('kota-kabupaten', KotaKabupatenController::class);
 Route::resource('kecamatan', KecamatanController::class);
 Route::resource('desa-kelurahan', DesaKelurahanController::class);
 Route::resource('rw', RWController::class);
+Route::resource('rt', RTController::class);

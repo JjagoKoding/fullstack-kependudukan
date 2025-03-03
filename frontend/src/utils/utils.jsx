@@ -74,7 +74,7 @@ export const SidebarMenu = [
   {
     type: "sub-menu",
     label: "RT",
-    path: "#",
+    path: "/admin/rt",
     icon: <RTIcon />,
   },
 ];

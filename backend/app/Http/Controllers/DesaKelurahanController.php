@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Api;
 use Illuminate\Http\Request;
 use App\Models\DesaKelurahan;
+use App\Models\ViewWilayah;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
@@ -15,11 +16,9 @@ class DesaKelurahanController extends Controller
      */
     public function index(Request $request)
     {
-        // $search = $request->input('search');
-        // $kecamatan = DesaKelurahan::select('id_desa_kelurahan', DB::raw("CONCAT(jenis, ' ', nama)"), 'id_kecamatan')->with(['kecamatan' => function ($query) {
-        //     $query->selectRaw("id_kota_kabupaten, CONCAT(jenis, ' ', nama) AS kota_kabupaten, id_provinsi")->with('provinsi');
-        // }])->where('nama_kecamatan', 'like', "%$search%")->get();
-        // return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', $kecamatan);
+        $search = $request->input('search');
+        $desakelurahan = ViewWilayah::where('desa_kelurahan', 'like', "%$search%")->get();
+        return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', $desakelurahan);
     }
 
     /**
@@ -41,7 +40,7 @@ class DesaKelurahanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DesaKelurahan $desaKelurahan)
+    public function show(DesaKelurahan $desakelurahan)
     {
         //
     }
@@ -49,7 +48,7 @@ class DesaKelurahanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DesaKelurahan $desaKelurahan)
+    public function edit(DesaKelurahan $desakelurahan)
     {
         //
     }
@@ -57,7 +56,7 @@ class DesaKelurahanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DesaKelurahan $desaKelurahan)
+    public function update(Request $request, DesaKelurahan $desakelurahan)
     {
         //
     }
@@ -65,7 +64,7 @@ class DesaKelurahanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DesaKelurahan $desaKelurahan)
+    public function destroy(DesaKelurahan $desakelurahan)
     {
         //
     }

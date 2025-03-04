@@ -58,6 +58,12 @@ main {
   margin-top: 30px;
 }
 
+@media (max-width: 768px) {
+  main {
+    padding: 28px 40px;
+  }
+}
+
 .loader {
   width: 60px;
   aspect-ratio: 2;

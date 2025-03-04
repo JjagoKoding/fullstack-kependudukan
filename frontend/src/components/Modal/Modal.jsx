@@ -1,7 +1,15 @@
 import { useEffect, useRef } from "react";
 import "./Modal.css";
 
-const Modal = ({ isOpen, onClose, children, setSubmit, modalTitle, modalDesc, wide = false }) => {
+const Modal = ({
+  isOpen,
+  onClose,
+  children,
+  setSubmit,
+  modalTitle,
+  modalDesc,
+  wide = false,
+}) => {
   const formRef = useRef(null);
 
   useEffect(() => {
@@ -36,10 +44,14 @@ const Modal = ({ isOpen, onClose, children, setSubmit, modalTitle, modalDesc, wi
             </svg>
           </button>
         </div>
-        <form ref={formRef} className="modal-form" onSubmit={e => {
-          e.preventDefault();
-          setSubmit();
-        }}>
+        <form
+          ref={formRef}
+          className="modal-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSubmit();
+          }}
+        >
           {children}
           <div className="modal-footer">
             <button
@@ -49,9 +61,11 @@ const Modal = ({ isOpen, onClose, children, setSubmit, modalTitle, modalDesc, wi
             >
               Cancel
             </button>
-            <button type="submit" className="button primary">
-              Submit
-            </button>
+            {setSubmit && (
+              <button type="submit" className="button primary">
+                Submit
+              </button>
+            )}
           </div>
         </form>
       </div>

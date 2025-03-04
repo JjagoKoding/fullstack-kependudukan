@@ -92,7 +92,7 @@ export const SidebarMenu = [
   {
     type: "sub-menu",
     label: "Pekerjaan",
-    path: "#",
+    path: "/admin/pekerjaan",
     icon: <PekerjaanIcon />,
   },
 ];
@@ -155,6 +155,15 @@ export const ColumnDesaKelurahan = [
 ];
 
 export const ColumnPendidikan = [
+  {
+    title: "#",
+  },
+  {
+    title: "Keterangan",
+  },
+];
+
+export const ColumnPekerjaan = [
   {
     title: "#",
   },

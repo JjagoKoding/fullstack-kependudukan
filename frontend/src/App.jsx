@@ -6,6 +6,7 @@ import DesaKelurahan from "./pages/DesaKelurahan";
 import RW from "./pages/RW";
 import RT from "./pages/RT";
 import Pendidikan from "./pages/Pendidikan";
+import Pekerjaan from "./pages/Pekerjaan";
 
 const Provinsi = lazy(() => import("./pages/Provinsi"));
 const Login = lazy(() => import("./pages/Login"));
@@ -29,6 +30,7 @@ function App() {
             <Route path="rw" element={<RW />} />
             <Route path="rt" element={<RT />} />
             <Route path="pendidikan" element={<Pendidikan />} />
+            <Route path="pekerjaan" element={<Pekerjaan />} />
           </Route>
         </Routes>
       </Suspense>

@@ -168,5 +168,8 @@ nav.breadcrumbs {
         flex-grow: 1;
     }
 
+    .search-input input {
+      flex-grow: 1;
+    }
 
 }

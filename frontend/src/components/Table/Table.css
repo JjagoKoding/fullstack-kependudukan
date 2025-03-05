@@ -88,6 +88,9 @@ td.action-group {
     position: relative;
     padding-left: 50%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: end;
   }
 
   td:last-child {

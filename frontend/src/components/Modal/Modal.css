@@ -87,6 +87,7 @@
 
 .modal-container.wide {
   max-width: 800px;
+  padding-bottom: 5px;
 }
 
 .modal-header {

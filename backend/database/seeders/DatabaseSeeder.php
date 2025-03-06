@@ -31,7 +31,11 @@ class DatabaseSeeder extends Seeder
             ProvinsiSeeder::class,
             KotaKabupatenSeeder::class,
             KecamatanSeeder::class,
-            DesaKelurahanSeeder::class
+            DesaKelurahanSeeder::class,
+            PekerjaanSeeder::class,
+            PendidikanSeeder::class,
+            PendudukSeeder::class,
+            KematianSeeder::class
         ]);
     }
 }

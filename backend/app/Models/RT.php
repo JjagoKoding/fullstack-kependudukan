@@ -10,4 +10,8 @@ class RT extends Model
     protected $primaryKey = 'id_rt';
     protected $fillable = ['rt'];
     public $timestamps = false;
+
+    public function keluarga() {
+        return $this->hasMany(Keluarga::class, 'id_rt');
+    }
 }

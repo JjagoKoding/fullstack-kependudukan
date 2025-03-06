@@ -207,3 +207,45 @@ export const ColumnPenduduk = [
     title: "Alamat",
   },
 ];
+
+export const ColumnKeluarga = [
+  {
+    title: "#",
+  },
+  {
+    title: "No KK",
+  },
+  {
+    title: "Alamat",
+  },
+  {
+    title: "RT/RW",
+  },
+  {
+    title: "Wilayah",
+  },
+];
+
+export const ColumnDetailKeluarga = [
+  {
+    title: "#",
+  },
+  {
+    title: "NIK",
+  },
+  {
+    title: "Nama",
+  },
+  {
+    title: "Gender",
+  },
+  {
+    title: "Status Hubungan",
+  },
+  {
+    title: "Ayah",
+  },
+  {
+    title: "Ibu",
+  },
+];

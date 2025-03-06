@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DesaKelurahanController;
+use App\Http\Controllers\DetailKeluargaController;
 use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\PendidikanController;
@@ -30,3 +32,5 @@ Route::resource('pendidikan', PendidikanController::class);
 Route::resource('pekerjaan', PekerjaanController::class);
 Route::resource('penduduk', PendudukController::class);
 Route::get('/penduduk/alt/{penduduk}', [PendudukController::class, 'alt']);
+Route::resource('keluarga', KeluargaController::class);
+Route::resource('detail-keluarga', DetailKeluargaController::class);

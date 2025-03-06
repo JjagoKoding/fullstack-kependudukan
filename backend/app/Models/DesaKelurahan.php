@@ -15,4 +15,8 @@ class DesaKelurahan extends Model
     public function kecamatan() {
         return $this->belongsTo(Kecamatan::class, 'id_kecamatan');
     }
+
+    public function keluarga() {
+        return $this->hasMany(Keluarga::class, 'kode_pos');
+    }
 }

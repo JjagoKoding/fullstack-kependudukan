@@ -10,4 +10,8 @@ class RW extends Model
     protected $primaryKey = 'id_rw';
     public $timestamps = false;
     protected $fillable = ['rw'];
+
+    public function keluarga() {
+        return $this->hasMany(Keluarga::class, 'id_rw');
+    }
 }

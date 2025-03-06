@@ -1,13 +1,13 @@
 import "./PageHeader.css";
 
-const PageHeader = ({ hasGroup, breadcrumbsLink, breadcrumbsPath, heading, handleEvent, handleSearch }) => {
+const PageHeader = ({ hasGroup, breadcrumbsLink, breadcrumbsPath, heading, handleEvent, handleSearch, navigateTo = null }) => {
   return (
     <section className={`page-header ${!hasGroup ? "alt" : ""}`}>
       <div>
         <nav className="breadcrumbs">
           <ol className="breadcrumbs-list">
             <li className="breadcrumbs-item">
-              <a href="" className="breadcrumbs-label">
+              <a href={navigateTo ? navigateTo : ""} className="breadcrumbs-label">
                 {breadcrumbsLink}
               </a>
             </li>

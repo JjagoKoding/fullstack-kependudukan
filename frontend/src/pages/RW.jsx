@@ -117,9 +117,9 @@ const RW = () => {
           <Table.Body>
             {rw.map((val, i) => (
               <tr key={val.id_rw}>
-                <td className="number-cell">{(i += 1)}</td>
-                <td>{val.rw}</td>
-                <td className="action-group">
+                <td data-label="#" className="number-cell">{(i += 1)}</td>
+                <td data-label="RW">{val.rw}</td>
+                <td data-label="Actions" className="action-group">
                   <div className="edit" onClick={() => handleEdit(val.id_rw)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

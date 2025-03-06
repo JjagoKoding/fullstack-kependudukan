@@ -111,9 +111,9 @@ const Pekerjaan = () => {
           <Table.Body>
             {pekerjaan.map((val, i) => (
               <tr key={val.id_pekerjaan}>
-                <td className="number-cell">{(i += 1)}</td>
-                <td>{val.keterangan}</td>
-                <td className="action-group">
+                <td data-label="#" className="number-cell">{(i += 1)}</td>
+                <td data-label="Keterangan">{val.keterangan}</td>
+                <td data-label="Actions" className="action-group">
                   <div className="edit" onClick={() => handleEdit(val.id_pekerjaan)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

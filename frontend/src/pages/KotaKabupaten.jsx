@@ -138,10 +138,10 @@ const KotaKabupaten = () => {
           <Table.Body>
             {kotaKabupaten.map((val, i) => (
               <tr key={val.id_kota_kabupaten}>
-                <td className="number-cell">{(i += 1)}</td>
-                <td>{val.kota_kabupaten}</td>
-                <td>{val.provinsi.nama_provinsi}</td>
-                <td className="action-group">
+                <td data-label="#" className="number-cell">{(i += 1)}</td>
+                <td data-label="Kota & Kabupaten">{val.kota_kabupaten}</td>
+                <td data-label="Provinsi">{val.provinsi.nama_provinsi}</td>
+                <td data-label="Actions" className="action-group">
                   <div
                     className="edit"
                     onClick={() => handleEdit(val.id_kota_kabupaten)}

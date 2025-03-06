@@ -134,11 +134,11 @@ const Kecamatan = () => {
           <Table.Body>
             {kecamatan.map((val, i) => (
               <tr key={val.id_kecamatan}>
-                <td className="number-cell">{(i += 1)}</td>
-                <td>{val.nama_kecamatan}</td>
-                <td>{val.kotakabupaten.kota_kabupaten}</td>
-                <td>{val.kotakabupaten.provinsi.nama_provinsi}</td>
-                <td className="action-group">
+                <td data-label="#" className="number-cell">{(i += 1)}</td>
+                <td data-label="Nama Kecamatan">{val.nama_kecamatan}</td>
+                <td data-label="Kota & Kabupaten">{val.kotakabupaten.kota_kabupaten}</td>
+                <td data-label="Provinsi">{val.kotakabupaten.provinsi.nama_provinsi}</td>
+                <td data-label="Actions" className="action-group">
                   <div
                     className="edit"
                     onClick={() => handleEdit(val.id_kecamatan)}

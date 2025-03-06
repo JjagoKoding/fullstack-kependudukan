@@ -117,9 +117,9 @@ export default function Provinsi() {
           <Table.Body>
             {provinsi.map((val, i) => (
               <tr key={val.id_provinsi}>
-                <td className="number-cell">{(i += 1)}</td>
-                <td>{val.nama_provinsi}</td>
-                <td className="action-group">
+                <td data-label="#" className="number-cell">{(i += 1)}</td>
+                <td data-label="Nama Provinsi">{val.nama_provinsi}</td>
+                <td data-label="Actions" className="action-group">
                   <div
                     className="edit"
                     onClick={() => handleEdit(val.id_provinsi)}

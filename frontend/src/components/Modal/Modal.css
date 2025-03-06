@@ -133,6 +133,8 @@
 
 .modal-form {
   padding: 20px 24px 24px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .modal-footer {

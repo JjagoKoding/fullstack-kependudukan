@@ -2,12 +2,14 @@
     flex: 1;
     min-width: 0;
     margin-bottom: 12px;
+    flex-basis: 275px;
 }
 
 .form-row {
     display: flex;
     gap: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
 }
 
 .form-group label {

@@ -201,30 +201,9 @@ export const ColumnPenduduk = [
     title: "Nama",
   },
   {
-    title: "Tempat/Tanggal Lahir",
-  },
-  {
     title: "Gender",
   },
   {
     title: "Alamat",
-  },
-  {
-    title: "Agama",
-  },
-  {
-    title: "Pendidikan",
-  },
-  {
-    title: "Pekerjaan",
-  },
-  {
-    title: "Kewarganegaraan",
-  },
-  {
-    title: "Golongan Darah",
-  },
-  {
-    title: "Status Perkawinan",
   },
 ];

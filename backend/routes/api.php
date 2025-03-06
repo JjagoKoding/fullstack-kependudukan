@@ -29,3 +29,4 @@ Route::resource('rt', RTController::class);
 Route::resource('pendidikan', PendidikanController::class);
 Route::resource('pekerjaan', PekerjaanController::class);
 Route::resource('penduduk', PendudukController::class);
+Route::get('/penduduk/alt/{penduduk}', [PendudukController::class, 'alt']);

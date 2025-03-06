@@ -37,6 +37,14 @@ const Field = ({
           onChange={setOnChange}
         />
       )}
+      {type === "date" && (
+        <input
+          type={type}
+          id={`input_${data}`}
+          value={setValue}
+          onChange={setOnChange}
+        />
+      )}
       {type === "select" && (
         <select
           id={`input_${data}`}

@@ -6,7 +6,16 @@ import Modal from "../components/Modal/Modal";
 import PageHeader from "../components/PageHeader/PageHeader";
 import Field from "../components/Field/Field";
 import Toast from "../components/Toast/Toast";
-import { getDetail } from "../services/DetailKeluargaRequest";
+import {
+  deleteDetail,
+  getAyah,
+  getDetail,
+  getIbu,
+  getNIK,
+  showDetail,
+  storeDetail,
+  updateDetail,
+} from "../services/DetailKeluargaRequest";
 import { useParams } from "react-router-dom";
 
 const DetailKeluarga = () => {
@@ -14,12 +23,14 @@ const DetailKeluarga = () => {
   const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState([]);
-  const [selectedRt, setSelectedRt] = useState([]);
+  const [selectedDetail, setSelectedDetail] = useState([]);
+  const [NIKDropdown, setNIKDropdown] = useState([]);
+  const [ayahDropdown, setAyahDropdown] = useState([]);
+  const [ibuDropdown, setIbuDropdown] = useState([]);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const { id } = useParams();
-  const [NOKK, setNOKK] = useState("");
   const [NIK, setNIK] = useState("");
   const [statusHubungan, setStatusHubungan] = useState("");
   const [ayah, setAyah] = useState("");
@@ -30,7 +41,22 @@ const DetailKeluarga = () => {
       const data = await getDetail(id);
       setDetailKeluarga(data.data);
     };
+    const loadNIK = async () => {
+      const data = await getNIK();
+      setNIKDropdown(data.data);
+    };
+    const loadAyah = async () => {
+      const data = await getAyah();
+      setAyahDropdown(data.data);
+    };
+    const loadIbu = async () => {
+      const data = await getIbu();
+      setIbuDropdown(data.data);
+    };
     loadData();
+    loadNIK();
+    loadAyah();
+    loadIbu();
   }, [refresh]);
 
   //   const handleSearch = async (search) => {
@@ -40,7 +66,6 @@ const DetailKeluarga = () => {
 
   const handleCreateModalOpen = () => {
     setError([]);
-    setNOKK("");
     setNIK("");
     setStatusHubungan("");
     setAyah("");
@@ -48,76 +73,90 @@ const DetailKeluarga = () => {
     setCreateModalOpen(true);
   };
 
-  //   const handleCreate = async () => {
-  //     const res = await storeRt({
-  //       rt: input,
-  //     });
-  //     if (res.status == 422) {
-  //       setError(res.data);
-  //     } else if (res.status == 200) {
-  //       setCreateModalOpen(false);
-  //       setRefresh((prev) => !prev);
-  //     }
-  //   };
+  const handleCreate = async () => {
+    const res = await storeDetail({
+      NOKK: id,
+      NIK: NIK,
+      status_hubungan: statusHubungan,
+      nik_ayah: ayah,
+      nik_ibu: ibu,
+    });
+    if (res.status == 422) {
+      setError(res.data);
+    } else if (res.status == 200) {
+      setCreateModalOpen(false);
+      setRefresh((prev) => !prev);
+    }
+  };
 
-  //   useEffect(() => {
-  //     if (selectedRt) {
-  //       setInput(selectedRt.rt || "");
-  //     }
-  //   }, [selectedRt]);
+  useEffect(() => {
+    if (selectedDetail) {
+      setNIK(selectedDetail.NIK);
+      setStatusHubungan(selectedDetail.status_hubungan);
+      setAyah(selectedDetail.nik_ayah);
+      setIbu(selectedDetail.nik_ibu);
+    }
+  }, [selectedDetail]);
 
-  //   const handleEdit = async (id) => {
-  //     setSelectedRt([]);
-  //     setError([]);
-  //     setLoading(true);
-  //     setTimeout(async () => {
-  //       const data = await showRt(id);
-  //       setSelectedRt(data.data);
-  //       setEditModalOpen(true);
-  //       setLoading(false);
-  //     }, 450);
-  //   };
+  const handleEdit = async (id) => {
+    setSelectedDetail([]);
+    setError([]);
+    setLoading(true);
+    setTimeout(async () => {
+      const data = await showDetail(id);
+      setSelectedDetail(data.data);
+      setEditModalOpen(true);
+      setLoading(false);
+    }, 450);
+  };
 
-  //   const handleUpdate = async () => {
-  //     const res = await updateRt({ rt: input }, selectedRt.id_rt);
-  //     if (res.status == 422) {
-  //       setError(res.data);
-  //     } else if (res.status == 200) {
-  //       setEditModalOpen(false);
-  //       setRefresh((prev) => !prev);
-  //     }
-  //   };
+  const handleUpdate = async () => {
+    const res = await updateDetail(
+      {
+        NOKK: id,
+        NIK: NIK,
+        status_hubungan: statusHubungan,
+        nik_ayah: ayah,
+        nik_ibu: ibu,
+      },
+      selectedDetail.id
+    );
+    if (res.status == 422) {
+      setError(res.data);
+    } else if (res.status == 200) {
+      setEditModalOpen(false);
+      setRefresh((prev) => !prev);
+    }
+  };
 
-  //   const handleDeleteModal = async (id) => {
-  //     setLoading(true);
-  //     setTimeout(async () => {
-  //       setSelectedRt([]);
-  //       const data = await showRt(id);
-  //       setSelectedRt(data.data);
-  //       setDeleteModalOpen(true);
-  //       setLoading(false);
-  //     }, 450);
-  //   };
+  const handleDeleteModal = async (id) => {
+    setLoading(true);
+    setTimeout(async () => {
+      setSelectedDetail([]);
+      const data = await showDetail(id);
+      setSelectedDetail(data.data);
+      setDeleteModalOpen(true);
+      setLoading(false);
+    }, 450);
+  };
 
-  //   const handleDelete = async () => {
-  //     await deleteRt(selectedRt.id_rt);
-  //     setDeleteModalOpen(false);
-  //     setRefresh((prev) => !prev);
-  //   };
+  const handleDelete = async () => {
+    await deleteDetail(selectedDetail.id);
+    setDeleteModalOpen(false);
+    setRefresh((prev) => !prev);
+  };
 
   return (
     <Layout>
       <PageHeader
         hasGroup={true}
         breadcrumbsLink={`Keluarga`}
-        breadcrumbsPath={`Detail Keluarga ${
-          detailKeluarga[0]?.nama ? "Pak " + detailKeluarga[0].nama : ""
-        }`}
+        breadcrumbsPath={`No KK : ${id}`}
         heading={`Detail Keluarga ${
-          detailKeluarga[0]?.nama ? "Pak " + detailKeluarga[0].nama : ""
-        }`}
+          detailKeluarga?.find(val => val.status_hubungan === 'Kepala Keluarga')?.nama || `No KK : ${id}`
+        }`}        
         navigateTo={`/admin/keluarga`}
-        // handleEvent={handleCreateModalOpen}
+        handleEvent={handleCreateModalOpen}
         // handleSearch={(e) => handleSearch(e.target.value)}
       />
       <Layout.Main>
@@ -155,10 +194,7 @@ const DetailKeluarga = () => {
                       <path d="M8 21a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2" />
                     </svg>
                   </div>
-                  <div
-                    className="edit"
-                    //   onClick={() => handleEdit(val.id_rt)}
-                  >
+                  <div className="edit" onClick={() => handleEdit(val.id)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1.3rem"
@@ -179,7 +215,7 @@ const DetailKeluarga = () => {
                   </div>
                   <div
                     className="delete"
-                    // onClick={() => handleDeleteModal(val.id_rt)}
+                    onClick={() => handleDeleteModal(val.id)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -206,49 +242,173 @@ const DetailKeluarga = () => {
             ))}
           </Table.Body>
         </Table>
-        {/* <Modal
+        <Modal
           isOpen={isCreateModalOpen}
           onClose={() => setCreateModalOpen(false)}
           setSubmit={handleCreate}
-          modalTitle={`Create Rt`}
-          modalDesc={`For create rt data.`}
+          modalTitle={`Create Detail Keluarga`}
+          modalDesc={`For create detail keluarga data.`}
         >
           <Field
-            placeHolder={`Masukkan rt ...`}
-            type={`text`}
-            data={`create_rt`}
-            contentLabel={`Rt`}
-            setValue={input}
-            setOnChange={(e) => setInput(e.target.value)}
-            setError={error.rt}
-          />
+            type={`select`}
+            data={`create_nik`}
+            contentLabel={`NIK`}
+            selectDefaultValue={``}
+            setOnChange={(e) => setNIK(e.target.value)}
+            setError={error.NIK}
+          >
+            <option value="" disabled hidden>
+              Pilih NIK
+            </option>
+            {NIKDropdown.map((val) => (
+              <option value={val.NIK} key={val.NIK}>
+                {val.NIK} - {val.nama}
+              </option>
+            ))}
+          </Field>
+          <Field
+            type={`select`}
+            data={`create_status_hubungan`}
+            contentLabel={`Status Hubungan`}
+            selectDefaultValue={``}
+            setOnChange={(e) => setStatusHubungan(e.target.value)}
+            setError={error.status_hubungan}
+          >
+            <option value="" disabled hidden>
+              Pilih Status Hubungan
+            </option>
+            <option value="Kepala Keluarga">Kepala Keluarga</option>
+            <option value="Istri">Istri</option>
+            <option value="Anak">Anak</option>
+            <option value="Menantu">Menantu</option>
+            <option value="Cucu">Cucu</option>
+            <option value="Orang Tua">Orang Tua</option>
+            <option value="Mertua">Mertua</option>
+            <option value="Famili Lain">Famili Lain</option>
+          </Field>
+          <Field
+            type={`select`}
+            data={`create_ayah`}
+            contentLabel={`Ayah`}
+            selectDefaultValue={``}
+            setOnChange={(e) => setAyah(e.target.value)}
+            setError={error.nik_ayah}
+          >
+            <option value="" disabled hidden>
+              Pilih Ayah
+            </option>
+            {ayahDropdown.map((val) => (
+              <option value={val.NIK} key={val.NIK}>
+                {val.NIK} - {val.nama}
+              </option>
+            ))}
+          </Field>
+          <Field
+            type={`select`}
+            data={`create_ibu`}
+            contentLabel={`Ibu`}
+            selectDefaultValue={``}
+            setOnChange={(e) => setIbu(e.target.value)}
+            setError={error.nik_ibu}
+          >
+            <option value="" disabled hidden>
+              Pilih Ibu
+            </option>
+            {ibuDropdown.map((val) => (
+              <option value={val.NIK} key={val.NIK}>
+                {val.NIK} - {val.nama}
+              </option>
+            ))}
+          </Field>
         </Modal>
         <Modal
           isOpen={isEditModalOpen}
           onClose={() => setEditModalOpen(false)}
           setSubmit={handleUpdate}
-          modalTitle={`Edit Rt`}
-          modalDesc={`For edit rt data.`}
+          modalTitle={`Edit Detail Keluarga`}
+          modalDesc={`For edit detail keluarga data.`}
         >
           <Field
-            placeHolder={`Masukkan rt ...`}
-            type={`text`}
-            data={`update_rt`}
-            contentLabel={`Rt`}
-            setValue={input}
-            setOnChange={(e) => setInput(e.target.value)}
-            setError={error.rt}
-          />
+            type={`select`}
+            data={`update_nik`}
+            contentLabel={`NIK`}
+            selectValue={NIK}
+            setOnChange={(e) => setNIK(e.target.value)}
+            setError={error.NIK}
+          >
+            <option value="" disabled hidden>
+              Pilih NIK
+            </option>
+            {NIKDropdown.map((val) => (
+              <option value={val.NIK} key={val.NIK}>
+                {val.NIK} - {val.nama}
+              </option>
+            ))}
+          </Field>
+          <Field
+            type={`select`}
+            data={`update_status_hubungan`}
+            contentLabel={`Status Hubungan`}
+            selectValue={statusHubungan}
+            setOnChange={(e) => setStatusHubungan(e.target.value)}
+            setError={error.status_hubungan}
+          >
+            <option value="" disabled hidden>
+              Pilih Status Hubungan
+            </option>
+            <option value="Kepala Keluarga">Kepala Keluarga</option>
+            <option value="Istri">Istri</option>
+            <option value="Anak">Anak</option>
+            <option value="Menantu">Menantu</option>
+            <option value="Cucu">Cucu</option>
+            <option value="Orang Tua">Orang Tua</option>
+            <option value="Mertua">Mertua</option>
+            <option value="Famili Lain">Famili Lain</option>
+          </Field>
+          <Field
+            type={`select`}
+            data={`update_ayah`}
+            contentLabel={`Ayah`}
+            selectValue={ayah}
+            setOnChange={(e) => setAyah(e.target.value)}
+            setError={error.nik_ayah}
+          >
+            <option value="" disabled hidden>
+              Pilih Ayah
+            </option>
+            {ayahDropdown.map((val) => (
+              <option value={val.NIK} key={val.NIK}>
+                {val.NIK} - {val.nama}
+              </option>
+            ))}
+          </Field>
+          <Field
+            type={`select`}
+            data={`update_ibu`}
+            contentLabel={`Ibu`}
+            selectValue={ibu}
+            setOnChange={(e) => setIbu(e.target.value)}
+            setError={error.nik_ibu}
+          >
+            <option value="" disabled hidden>
+              Pilih Ibu
+            </option>
+            {ibuDropdown.map((val) => (
+              <option value={val.NIK} key={val.NIK}>
+                {val.NIK} - {val.nama}
+              </option>
+            ))}
+          </Field>
         </Modal>
         <Modal
           isOpen={isDeleteModalOpen}
           onClose={() => setDeleteModalOpen(false)}
           setSubmit={handleDelete}
-          modalTitle={`Delete Rt`}
+          modalTitle={`Delete Detail Keluarga`}
           modalDesc={`Anda yakin ingin menghapus ${
-            selectedRt.rt ? selectedRt.rt : ""
+            selectedDetail.NIK ? selectedDetail.NIK : ""
           }.`}
-        /> */}
+        />
       </Layout.Main>
       {loading && (
         <Layout.Toast>

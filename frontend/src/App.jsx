@@ -15,6 +15,7 @@ const Pekerjaan = lazy(() => import("./pages/Pekerjaan"));
 const Penduduk = lazy(() => import("./pages/Penduduk"));
 const Keluarga = lazy(() => import("./pages/Keluarga"));
 const DetailKeluarga = lazy(() => import("./pages/DetailKeluarga"));
+const Kematian = lazy(() => import("./pages/Kematian"));
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="penduduk" element={<Penduduk />} />
             <Route path="keluarga" element={<Keluarga />} />
             <Route path="keluarga/:id" element={<DetailKeluarga />} />
+            <Route path="Kematian" element={<Kematian />} />
           </Route>
         </Routes>
       </Suspense>

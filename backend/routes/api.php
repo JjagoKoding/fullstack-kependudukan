@@ -6,6 +6,7 @@ use App\Http\Controllers\DesaKelurahanController;
 use App\Http\Controllers\DetailKeluargaController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KeluargaController;
+use App\Http\Controllers\KematianController;
 use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\PendidikanController;
@@ -36,4 +37,5 @@ Route::resource('keluarga', KeluargaController::class);
 Route::resource('detail-keluarga', DetailKeluargaController::class);
 Route::get('ayah', [DetailKeluargaController::class, 'ayah']);
 Route::get('ibu', [DetailKeluargaController::class, 'ibu']);
+Route::resource('kematian', KematianController::class);
 

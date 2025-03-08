@@ -3,6 +3,7 @@ import {
   HomeIcon,
   KecamatanIcon,
   KeluargaIcon,
+  KematianIcon,
   KotaKabupatenIcon,
   PekerjaanIcon,
   PendidikanIcon,
@@ -38,6 +39,12 @@ export const SidebarMenu = [
     label: "Keluarga",
     path: "/admin/keluarga",
     icon: <KeluargaIcon />,
+  },
+  {
+    type: "sub-menu",
+    label: "Kematian",
+    path: "/admin/kematian",
+    icon: <KematianIcon />,
   },
   {
     type: "sub-header",
@@ -247,5 +254,29 @@ export const ColumnDetailKeluarga = [
   },
   {
     title: "Ibu",
+  },
+];
+
+export const ColumnKematian = [
+  {
+    title: "#",
+  },
+  {
+    title: "NIK",
+  },
+  {
+    title: "Nama",
+  },
+  {
+    title: "Gender",
+  },
+  {
+    title: "Agama",
+  },
+  {
+    title: "Tanggal Meninggal",
+  },
+  {
+    title: "Alasan",
   },
 ];

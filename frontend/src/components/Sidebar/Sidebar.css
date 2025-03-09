@@ -30,11 +30,11 @@ nav.sidebar {
   width: 269px;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid rgb(229, 234, 239);
 }
 
 .logo-siPedu {
   position: relative;
-  top: 0.5rem;
   right: 3.4rem;
 }
 

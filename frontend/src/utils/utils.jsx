@@ -2,6 +2,7 @@ import {
   DesaKelurahanIcon,
   HomeIcon,
   KecamatanIcon,
+  KelahiranIcon,
   KeluargaIcon,
   KematianIcon,
   KotaKabupatenIcon,
@@ -45,6 +46,12 @@ export const SidebarMenu = [
     label: "Kematian",
     path: "/admin/kematian",
     icon: <KematianIcon />,
+  },
+  {
+    type: "sub-menu",
+    label: "Kelahiran",
+    path: "/admin/kelahiran",
+    icon: <KelahiranIcon />,
   },
   {
     type: "sub-header",
@@ -278,5 +285,26 @@ export const ColumnKematian = [
   },
   {
     title: "Alasan",
+  },
+];
+
+export const ColumnKelahiran= [
+  {
+    title: "#",
+  },
+  {
+    title: "Nama",
+  },
+  {
+    title: "Tanggal Lahir",
+  },
+  {
+    title: "Tempat",
+  },
+  {
+    title: "Ayah",
+  },
+  {
+    title: "Ibu",
   },
 ];

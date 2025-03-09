@@ -16,6 +16,7 @@ const Penduduk = lazy(() => import("./pages/Penduduk"));
 const Keluarga = lazy(() => import("./pages/Keluarga"));
 const DetailKeluarga = lazy(() => import("./pages/DetailKeluarga"));
 const Kematian = lazy(() => import("./pages/Kematian"));
+const Kelahiran = lazy(() => import("./pages/Kelahiran"));
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
             <Route path="penduduk" element={<Penduduk />} />
             <Route path="keluarga" element={<Keluarga />} />
             <Route path="keluarga/:id" element={<DetailKeluarga />} />
-            <Route path="Kematian" element={<Kematian />} />
+            <Route path="kematian" element={<Kematian />} />
+            <Route path="kelahiran" element={<Kelahiran />} />
           </Route>
         </Routes>
       </Suspense>

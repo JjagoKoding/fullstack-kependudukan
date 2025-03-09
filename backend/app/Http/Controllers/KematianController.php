@@ -23,7 +23,7 @@ class KematianController extends Controller
         }])->whereHas('viewpenduduk', function ($query) use ($search) {
             $query->where('nama', 'like', "%$search%");
         })->get();
-        return Api::make(Response::HTTP_OK, 'Data berhasil dimuat', $kematian);
+        return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', $kematian);
     }
 
     /**
@@ -51,7 +51,7 @@ class KematianController extends Controller
                 'alasan.required' => 'Alasan wajib diisi.',
             ]);
             $kematian = Kematian::create($validasi);
-            return Api::make(Response::HTTP_OK, 'Data berhasil dibuat', $kematian);
+            return Api::make(Response::HTTP_OK, 'Data berhasil dibuat.', $kematian);
         } catch (ValidationException $e) {
             return Api::make(Response::HTTP_UNPROCESSABLE_ENTITY, 'Validation vailed', $e->errors());
         }
@@ -95,7 +95,7 @@ class KematianController extends Controller
                 'alasan.required' => 'Alasan wajib diisi.',
             ]);
             $kematian->update($validasi);
-            return Api::make(Response::HTTP_OK, 'Data berhasil diubah', $kematian);
+            return Api::make(Response::HTTP_OK, 'Data berhasil diubah.', $kematian);
         } catch (ValidationException $e) {
             return Api::make(Response::HTTP_UNPROCESSABLE_ENTITY, 'Validation vailed', $e->errors());
         }
@@ -107,6 +107,6 @@ class KematianController extends Controller
     public function destroy(Kematian $kematian)
     {
         $kematian->delete();
-        return Api::make(Response::HTTP_OK, 'Data berhasil dihapus', null);
+        return Api::make(Response::HTTP_OK, 'Data berhasil dihapus.', null);
     }
 }

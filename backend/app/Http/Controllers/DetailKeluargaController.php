@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetailKeluarga;
-use App\Models\ViewDetailKeluarga;
-use Illuminate\Http\Request;
 use App\Helpers\Api;
 use App\Models\ViewPenduduk;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Models\DetailKeluarga;
+use Illuminate\Validation\Rule;
+use App\Models\ViewDetailKeluarga;
 use Illuminate\Validation\ValidationException;
 
 class DetailKeluargaController extends Controller
@@ -39,7 +40,7 @@ class DetailKeluargaController extends Controller
         try {
             $validasi = $request->validate([
                 'NOKK' => 'required|exists:tb_keluarga,NOKK|integer',
-                'NIK' => 'required|exists:tb_penduduk,NIK',
+                'NIK' => 'required|exists:tb_penduduk,NIK|unique:tb_detail_keluarga,NIK',
                 'status_hubungan' => 'required',
                 'nik_ayah' => 'nullable|exists:tb_penduduk,NIK',
                 'nik_ibu' => 'nullable|exists:tb_penduduk,NIK',
@@ -50,6 +51,7 @@ class DetailKeluargaController extends Controller
                 'status_hubungan.required' => 'Status Hubungan wajib diisi.',
                 'NIK.required' => 'NIK wajib diisi.',
                 'NIK.exists' => 'NIK tidak valid.',
+                'NIK.unique' => 'NIK sudah terdaftar.',
                 'nik_ayah.exists' => 'Ayah tidak valid.',
                 'nik_ibu.exists' => 'Ibu tidak valid.',
             ]);
@@ -94,7 +96,11 @@ class DetailKeluargaController extends Controller
         try {
             $validasi = $request->validate([
                 'NOKK' => 'required|exists:tb_keluarga,NOKK|integer',
-                'NIK' => 'required|exists:tb_penduduk,NIK',
+                'NIK' => [
+                    'required',
+                    'exists:tb_penduduk,NIK',
+                    Rule::unique('tb_detail_keluarga', 'NIK')->ignore($detail_keluarga->NIK, 'NIK')
+                ],
                 'status_hubungan' => 'required',
                 'nik_ayah' => 'nullable|exists:tb_penduduk,NIK',
                 'nik_ibu' => 'nullable|exists:tb_penduduk,NIK',
@@ -105,6 +111,7 @@ class DetailKeluargaController extends Controller
                 'status_hubungan.required' => 'Status Hubungan wajib diisi.',
                 'NIK.required' => 'NIK wajib diisi.',
                 'NIK.exists' => 'NIK tidak valid.',
+                'NIK.unique' => 'NIK sudah terdaftar.',
                 'nik_ayah.exists' => 'Ayah tidak valid.',
                 'nik_ibu.exists' => 'Ibu tidak valid.',
             ]);

@@ -69,14 +69,15 @@ nav.sidebar {
 }
 
 .menu-container::-webkit-scrollbar-thumb {
+  visibility: collapse;
   background: #ccc;
   border-radius: 2px;
-  transition: background-color 0.3s ease;
+  transition: all 0.5s ease;
 }
 
-/* Efek saat hover */
 .menu-container:hover::-webkit-scrollbar-thumb {
-  background-color: #888;
+  visibility: visible;
+  transition: all 0.5s ease;
 }
 
 

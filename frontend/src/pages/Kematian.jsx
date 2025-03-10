@@ -262,9 +262,9 @@ const Kematian = () => {
             <option value="" disabled hidden>
               Pilih Penduduk
             </option>
-            {kematian.map((val) => (
+            {pendudukDropdown.map((val) => (
               <option value={val.NIK} key={val.NIK}>
-                {val.NIK} - {val.viewpenduduk.nama}
+                {val.NIK} - {val.nama}
               </option>
             ))}
           </Field>

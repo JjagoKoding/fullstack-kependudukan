@@ -39,6 +39,7 @@ Route::resource('keluarga', KeluargaController::class);
 Route::resource('detail-keluarga', DetailKeluargaController::class);
 Route::get('ayah', [DetailKeluargaController::class, 'ayah']);
 Route::get('ibu', [DetailKeluargaController::class, 'ibu']);
+Route::get('kematian/alt', [KematianController::class, 'alt']);
 Route::resource('kematian', KematianController::class);
 Route::resource('kelahiran', KelahiranController::class);
 Route::get('pindah/alt', [PindahController::class, 'alt']);

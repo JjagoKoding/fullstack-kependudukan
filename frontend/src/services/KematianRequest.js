@@ -10,7 +10,7 @@ export const getKematian = async (search) => {
 
 export const getPenduduk = async () => {
   try {
-    const response = await fetch(`/api/penduduk`);
+    const response = await fetch(`/api/kematian/alt`);
     return await response.json();
   } catch (error) {
     console.error("Error saat ambil data:", error);

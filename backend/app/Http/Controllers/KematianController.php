@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Api;
 use App\Models\Kematian;
 use App\Models\Penduduk;
+use App\Models\ViewPenduduk;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
@@ -23,6 +24,11 @@ class KematianController extends Controller
         }])->whereHas('viewpenduduk', function ($query) use ($search) {
             $query->where('nama', 'like', "%$search%");
         })->get();
+        return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', $kematian);
+    }
+
+    public function alt() {
+        $kematian = ViewPenduduk::select('NIK', 'status', 'nama', 'jk', 'agama')->with('kematian')->where('status', '=', 'Mati')->orWhere('status', '=', 'Hidup')->get();
         return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', $kematian);
     }
 

@@ -310,7 +310,7 @@ export const ColumnKematian = [
   },
 ];
 
-export const ColumnKelahiran= [
+export const ColumnKelahiran = [
   {
     title: "#",
   },
@@ -328,5 +328,23 @@ export const ColumnKelahiran= [
   },
   {
     title: "Ibu",
+  },
+];
+
+export const ColumnPindah = [
+  {
+    title: "#",
+  },
+  {
+    title: "NIK",
+  },
+  {
+    title: "Nama",
+  },
+  {
+    title: "Tanggal Pindah",
+  },
+  {
+    title: "Alasan",
   },
 ];

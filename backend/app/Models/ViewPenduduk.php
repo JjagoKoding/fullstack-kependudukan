@@ -14,4 +14,8 @@ class ViewPenduduk extends Model
     public function kematian() {
         return $this->hasOne(Kematian::class, 'NIK');
     }
+
+    public function pindah() {
+        return $this->hasOne(Pindah::class, 'NIK');
+    }
 }

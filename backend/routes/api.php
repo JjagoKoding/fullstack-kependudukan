@@ -12,6 +12,7 @@ use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\PindahController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\RWController;
@@ -40,4 +41,6 @@ Route::get('ayah', [DetailKeluargaController::class, 'ayah']);
 Route::get('ibu', [DetailKeluargaController::class, 'ibu']);
 Route::resource('kematian', KematianController::class);
 Route::resource('kelahiran', KelahiranController::class);
+Route::get('pindah/alt', [PindahController::class, 'alt']);
+Route::resource('pindah', PindahController::class);
 

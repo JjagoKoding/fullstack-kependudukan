@@ -23,7 +23,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pekerjaan')->nullable();
             $table->enum('kewarganegaraan', ['WNI', 'WNA']);
             $table->enum('golongan_darah', ['A', 'B', 'AB', 'O', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'Tidak Tahu']);
-            $table->enum('status_perkawinan', ['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati']);
             $table->foreign('tempat_lahir')->references('id_kota_kabupaten')->on('tb_kota_kabupaten')->nullOnDelete();
             $table->foreign('id_pendidikan')->references('id_pendidikan')->on('tb_pendidikan')->nullOnDelete();
             $table->foreign('id_pekerjaan')->references('id_pekerjaan')->on('tb_pekerjaan')->nullOnDelete();

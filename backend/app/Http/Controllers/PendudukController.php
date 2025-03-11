@@ -48,7 +48,6 @@ class PendudukController extends Controller
                 'id_pekerjaan' => 'required|exists:tb_pekerjaan,id_pekerjaan',
                 'kewarganegaraan' => 'required',
                 'golongan_darah' => 'required',
-                'status_perkawinan' => 'required',
             ], [
                 'NIK.required' => 'NIK wajib diisi.',
                 'NIK.unique' => 'NIK sudah terdaftar.',
@@ -66,7 +65,6 @@ class PendudukController extends Controller
                 'id_pekerjaan.exists' => 'Pekerjaan tidak valid.',
                 'kewarganegaraan.required' => 'Kewarganegaraan wajib diisi.',
                 'golongan_darah.required' => 'Golongan Darah wajib diisi.',
-                'status_perkawinan.required' => 'Status Perkawinan wajib diisi.',
             ]);
             $penduduk = Penduduk::create($validasi);
             return Api::make(Response::HTTP_OK, 'Data berhasil dibuat.', $penduduk);
@@ -113,7 +111,6 @@ class PendudukController extends Controller
                 'id_pekerjaan' => 'required|exists:tb_pekerjaan,id_pekerjaan',
                 'kewarganegaraan' => 'required',
                 'golongan_darah' => 'required',
-                'status_perkawinan' => 'required',
             ], [
                 'NIK.required' => 'NIK wajib diisi.',
                 'NIK.unique' => 'NIK sudah terdaftar.',
@@ -131,7 +128,6 @@ class PendudukController extends Controller
                 'id_pekerjaan.exists' => 'Pekerjaan tidak valid.',
                 'kewarganegaraan.required' => 'Kewarganegaraan wajib diisi.',
                 'golongan_darah.required' => 'Golongan Darah wajib diisi.',
-                'status_perkawinan.required' => 'Status Perkawinan wajib diisi.',
             ]);
             $penduduk->update($validasi);
             return Api::make(Response::HTTP_OK, 'Data berhasil diubah.', $penduduk);

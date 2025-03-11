@@ -42,7 +42,6 @@ const Penduduk = () => {
   const [pekerjaan, setPekerjaan] = useState("");
   const [kewarganegaraan, setKewarganegaraan] = useState("");
   const [golonganDarah, setGolonganDarah] = useState("");
-  const [statusPerkawinan, setStatusPerkawinan] = useState("");
 
   useEffect(() => {
     const loadData = async () => {
@@ -96,7 +95,6 @@ const Penduduk = () => {
     setPendidikan("");
     setKewarganegaraan("");
     setGolonganDarah("");
-    setStatusPerkawinan("");
     setCreateModalOpen(true);
   };
 
@@ -113,7 +111,6 @@ const Penduduk = () => {
       id_pekerjaan: pekerjaan,
       kewarganegaraan: kewarganegaraan,
       golongan_darah: golonganDarah,
-      status_perkawinan: statusPerkawinan,
     });
     if (res.status == 422) {
       setError(res.data);
@@ -136,7 +133,6 @@ const Penduduk = () => {
       setPekerjaan(selectedPenduduk.id_pekerjaan || "");
       setKewarganegaraan(selectedPenduduk.kewarganegaraan || "");
       setGolonganDarah(selectedPenduduk.golongan_darah || "");
-      setStatusPerkawinan(selectedPenduduk.status_perkawinan || "");
     }
   }, [selectedPenduduk]);
 
@@ -166,7 +162,6 @@ const Penduduk = () => {
         id_pekerjaan: pekerjaan,
         kewarganegaraan: kewarganegaraan,
         golongan_darah: golonganDarah,
-        status_perkawinan: statusPerkawinan,
       },
       selectedPenduduk.NIK
     );
@@ -448,7 +443,7 @@ const Penduduk = () => {
             <Field
               type={`select`}
               data={`create_goldar`}
-              contentLabel={`Golonan Darah`}
+              contentLabel={`Golongan Darah`}
               selectDefaultValue={``}
               setOnChange={(e) => setGolonganDarah(e.target.value)}
               setError={error.golongan_darah}
@@ -469,22 +464,6 @@ const Penduduk = () => {
               <option value="O+">O+</option>
               <option value="O-">O-</option>
               <option value="Tidak Tahu">Tidak Tahu</option>
-            </Field>
-            <Field
-              type={`select`}
-              data={`create_status_perkawinan`}
-              contentLabel={`Status Perkawinan`}
-              selectDefaultValue={``}
-              setOnChange={(e) => setStatusPerkawinan(e.target.value)}
-              setError={error.status_perkawinan}
-            >
-              <option value="" disabled hidden>
-                Pilih Status Perkawinan
-              </option>
-              <option value="Belum Kawin">Belum Kawin</option>
-              <option value="Kawin">Kawin</option>
-              <option value="Cerai Hidup">Cerai Hidup</option>
-              <option value="Cerai Mati">Cerai Mati</option>
             </Field>
           </div>
         </Modal>
@@ -645,7 +624,7 @@ const Penduduk = () => {
             <Field
               type={`select`}
               data={`update_goldar`}
-              contentLabel={`Golonan Darah`}
+              contentLabel={`Golongan Darah`}
               selectValue={golonganDarah}
               setOnChange={(e) => setGolonganDarah(e.target.value)}
               setError={error.golongan_darah}
@@ -666,22 +645,6 @@ const Penduduk = () => {
               <option value="O+">O+</option>
               <option value="O-">O-</option>
               <option value="Tidak Tahu">Tidak Tahu</option>
-            </Field>
-            <Field
-              type={`select`}
-              data={`update_status_perkawinan`}
-              contentLabel={`Status Perkawinan`}
-              selectValue={golonganDarah}
-              setOnChange={(e) => setStatusPerkawinan(e.target.value)}
-              setError={error.status_perkawinan}
-            >
-              <option value="" disabled hidden>
-                Pilih Status Perkawinan
-              </option>
-              <option value="Belum Kawin">Belum Kawin</option>
-              <option value="Kawin">Kawin</option>
-              <option value="Cerai Hidup">Cerai Hidup</option>
-              <option value="Cerai Mati">Cerai Mati</option>
             </Field>
           </div>
         </Modal>
@@ -747,13 +710,6 @@ const Penduduk = () => {
                       <td className="label">Agama</td>
                       <td className="colon">:</td>
                       <td className="value">{selectedPenduduk.agama}</td>
-                    </tr>
-                    <tr>
-                      <td className="label">Status Perkawinan</td>
-                      <td className="colon">:</td>
-                      <td className="value">
-                        {selectedPenduduk.status_perkawinan}
-                      </td>
                     </tr>
                     <tr>
                       <td className="label">Pendidikan</td>

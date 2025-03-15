@@ -16,6 +16,8 @@ import {
   updatePendatang,
   deletePendatang,
 } from "../services/PendatangRequest";
+import { showPendudukAlt } from "../services/PendudukRequest";
+import CardProfile from "../components/CardProfile/CardProfile";
 
 const Pendatang = () => {
   const [pendatang, setPendatang] = useState([]);
@@ -23,6 +25,8 @@ const Pendatang = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState([]);
   const [selectedPendatang, setSelectedPendatang] = useState([]);
+  const [selectedPenduduk, setSelectedPenduduk] = useState([]);
+  const [isSeeModalOpen, setSeeModalOpen] = useState(false);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -70,6 +74,17 @@ const Pendatang = () => {
   //     const data = await getRt(search);
   //     setRt(data.data);
   //   };
+
+  const handleSeeModalOpen = async (id) => {
+    setSelectedPenduduk([]);
+    setLoading(true);
+    setTimeout(async () => {
+      const data = await showPendudukAlt(id);
+      setSelectedPenduduk(data.data);
+      setSeeModalOpen(true);
+      setLoading(false);
+    }, 450);
+  };
 
   const handleCreateModalOpen = () => {
     setError([]);
@@ -208,9 +223,8 @@ const Pendatang = () => {
                 </td>
                 <td data-label="NIK">
                   <div
-                    onClick={() =>
-                      alert("Nama saya adalah " + val.penduduk.nama)
-                    }
+                    className="txt-nik"
+                    onClick={() => handleSeeModalOpen(val.NIK)}
                   >
                     {val.NIK}
                   </div>
@@ -679,6 +693,13 @@ const Pendatang = () => {
             selectedPendatang.penduduk ? selectedPendatang.penduduk?.nama : ""
           }.`}
         />
+        <Modal
+          isOpen={isSeeModalOpen}
+          onClose={() => setSeeModalOpen(false)}
+          wide={true}
+        >
+          <CardProfile penduduk={selectedPenduduk || {}} />
+        </Modal>
       </Layout.Main>
       {loading && (
         <Layout.Toast>

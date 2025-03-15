@@ -14,6 +14,8 @@ import {
   storeKematian,
   updateKematian,
 } from "../services/KematianRequest";
+import { showPendudukAlt } from "../services/PendudukRequest";
+import CardProfile from "../components/CardProfile/CardProfile";
 
 const Kematian = () => {
   const [kematian, setKematian] = useState([]);
@@ -21,7 +23,9 @@ const Kematian = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState([]);
   const [selectedKematian, setSelectedKematian] = useState([]);
+  const [selectedPenduduk, setSelectedPenduduk] = useState([]);
   const [pendudukDropdown, setPendudukDropdown] = useState([]);
+  const [isSeeModalOpen, setSeeModalOpen] = useState(false);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -45,6 +49,17 @@ const Kematian = () => {
   const handleSearch = async (search) => {
     const data = await getKematian(search);
     setKematian(data.data);
+  };
+
+  const handleSeeModalOpen = async (id) => {
+    setSelectedPenduduk([]);
+    setLoading(true);
+    setTimeout(async () => {
+      const data = await showPendudukAlt(id);
+      setSelectedPenduduk(data.data);
+      setSeeModalOpen(true);
+      setLoading(false);
+    }, 450);
   };
 
   const handleCreateModalOpen = () => {
@@ -142,7 +157,14 @@ const Kematian = () => {
                 <td data-label="#" className="number-cell">
                   {(i += 1)}
                 </td>
-                <td data-label="NIK">{val.NIK}</td>
+                <td data-label="NIK">
+                  <div
+                    className="txt-nik"
+                    onClick={() => handleSeeModalOpen(val.NIK)}
+                  >
+                    {val.NIK}
+                  </div>
+                </td>
                 <td data-label="Nama">{val.viewpenduduk.nama}</td>
                 <td data-label="Gender">
                   {val.viewpenduduk.jk === "L" ? "Laki - Laki" : "Perempuan"}
@@ -295,6 +317,13 @@ const Kematian = () => {
             selectedKematian.NIK ? selectedKematian.NIK : ""
           }.`}
         />
+        <Modal
+          isOpen={isSeeModalOpen}
+          onClose={() => setSeeModalOpen(false)}
+          wide={true}
+        >
+          <CardProfile penduduk={selectedPenduduk || {}} />
+        </Modal>
       </Layout.Main>
       {loading && (
         <Layout.Toast>

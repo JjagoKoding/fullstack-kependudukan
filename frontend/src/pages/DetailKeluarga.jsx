@@ -17,6 +17,8 @@ import {
   updateDetail,
 } from "../services/DetailKeluargaRequest";
 import { useParams } from "react-router-dom";
+import { showPendudukAlt } from "../services/PendudukRequest";
+import CardProfile from "../components/CardProfile/CardProfile";
 
 const DetailKeluarga = () => {
   const [detailKeluarga, setDetailKeluarga] = useState([]);
@@ -24,9 +26,11 @@ const DetailKeluarga = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState([]);
   const [selectedDetail, setSelectedDetail] = useState([]);
+  const [selectedPenduduk, setSelectedPenduduk] = useState([]);
   const [NIKDropdown, setNIKDropdown] = useState([]);
   const [ayahDropdown, setAyahDropdown] = useState([]);
   const [ibuDropdown, setIbuDropdown] = useState([]);
+  const [isSeeModalOpen, setSeeModalOpen] = useState(false);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -63,6 +67,17 @@ const DetailKeluarga = () => {
   //     const data = await getRt(search);
   //     setRt(data.data);
   //   };
+
+  const handleSeeModalOpen = async (id) => {
+    setSelectedPenduduk([]);
+    setLoading(true);
+    setTimeout(async () => {
+      const data = await showPendudukAlt(id);
+      setSelectedPenduduk(data.data);
+      setSeeModalOpen(true);
+      setLoading(false);
+    }, 450);
+  };
 
   const handleCreateModalOpen = () => {
     setError([]);
@@ -153,8 +168,10 @@ const DetailKeluarga = () => {
         breadcrumbsLink={`Keluarga`}
         breadcrumbsPath={`No KK : ${id}`}
         heading={`Detail Keluarga ${
-          detailKeluarga?.find(val => val.status_hubungan === 'Kepala Keluarga')?.nama || `No KK : ${id}`
-        }`}        
+          detailKeluarga?.find(
+            (val) => val.status_hubungan === "Kepala Keluarga"
+          )?.nama || `No KK : ${id}`
+        }`}
         navigateTo={`/admin/keluarga`}
         handleEvent={handleCreateModalOpen}
         // handleSearch={(e) => handleSearch(e.target.value)}
@@ -175,7 +192,7 @@ const DetailKeluarga = () => {
                 <td data-label="Ayah">{val.ayah}</td>
                 <td data-label="Ibu">{val.ibu}</td>
                 <td data-label="Actions" className="action-group">
-                  <div className="selengkapnya" style={{ cursor: "pointer" }}>
+                  <div className="selengkapnya" style={{ cursor: "pointer" }} onClick={() => handleSeeModalOpen(val.NIK)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1.3rem"
@@ -409,6 +426,13 @@ const DetailKeluarga = () => {
             selectedDetail.NIK ? selectedDetail.NIK : ""
           }.`}
         />
+        <Modal
+          isOpen={isSeeModalOpen}
+          onClose={() => setSeeModalOpen(false)}
+          wide={true}
+        >
+          <CardProfile penduduk={selectedPenduduk || {}} />
+        </Modal>
       </Layout.Main>
       {loading && (
         <Layout.Toast>

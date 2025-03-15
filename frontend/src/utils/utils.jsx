@@ -348,3 +348,21 @@ export const ColumnPindah = [
     title: "Alasan",
   },
 ];
+
+export const ColumnPendatang = [
+  {
+    title: "#",
+  },
+  {
+    title: "NIK",
+  },
+  {
+    title: "Nama",
+  },
+  {
+    title: "Tanggal Datang",
+  },
+  {
+    title: "Alasan",
+  },
+];

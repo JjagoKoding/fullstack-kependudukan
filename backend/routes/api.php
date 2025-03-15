@@ -10,6 +10,7 @@ use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\KematianController;
 use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\PekerjaanController;
+use App\Http\Controllers\PendatangController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\PindahController;
@@ -44,4 +45,5 @@ Route::resource('kematian', KematianController::class);
 Route::resource('kelahiran', KelahiranController::class);
 Route::get('pindah/alt', [PindahController::class, 'alt']);
 Route::resource('pindah', PindahController::class);
+Route::resource('pendatang', PendatangController::class);
 

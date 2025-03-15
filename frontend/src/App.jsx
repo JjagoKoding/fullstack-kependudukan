@@ -18,6 +18,7 @@ const DetailKeluarga = lazy(() => import("./pages/DetailKeluarga"));
 const Kematian = lazy(() => import("./pages/Kematian"));
 const Kelahiran = lazy(() => import("./pages/Kelahiran"));
 const Pindah = lazy(() => import("./pages/Pindah"));
+const Pendatang = lazy(() => import("./pages/Pendatang"));
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="kematian" element={<Kematian />} />
             <Route path="kelahiran" element={<Kelahiran />} />
             <Route path="pindah" element={<Pindah />} />
+            <Route path="pendatang" element={<Pendatang />} />
           </Route>
         </Routes>
       </Suspense>

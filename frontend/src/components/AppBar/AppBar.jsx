@@ -92,7 +92,7 @@ const AppBar = ({ toggleSidebar, auth, avatarURL }) => {
             </svg>
             Settings
           </a>
-          <a href="#" className="dropdown-item">
+          <a href="/logout" className="dropdown-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={17}

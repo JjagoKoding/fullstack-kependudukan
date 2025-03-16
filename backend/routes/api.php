@@ -22,8 +22,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [AuthController::class, 'profile']);
-    Route::post('/logout', [AuthController::class, 'logout']);
 });
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 Route::get('/avatar/{id}', [AuthController::class, 'avatar']);
 
 Route::resource('provinsi', ProvinsiController::class);

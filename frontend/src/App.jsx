@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import GuestRoute from "./routes/GuestRoute";
-import ProtectedRoute from "./routes/ProtectedRoute";
 
-const Provinsi = lazy(() => import("./pages/Provinsi"));
 const Login = lazy(() => import("./pages/Login"));
+const Logout = lazy(() => import("./pages/Auth/Logout"));
+const GuestRoute = lazy(() => import("./routes/GuestRoute"));
+const ProtectedRoute = lazy(() => import("./routes/ProtectedRoute"));
+const Provinsi = lazy(() => import("./pages/Provinsi"));
 const KotaKabupaten = lazy(() => import("./pages/KotaKabupaten"));
 const Kecamatan = lazy(() => import("./pages/Kecamatan"));
 const DesaKelurahan = lazy(() => import("./pages/DesaKelurahan"));
@@ -29,7 +30,7 @@ function App() {
           <Route path="auth" element={<GuestRoute />}>
             <Route path="login" element={<Login />} />
           </Route>
-
+          <Route path="logout" element={<Logout />} />
           <Route path="admin" element={<ProtectedRoute />}>
             <Route path="provinsi" element={<Provinsi />} />
             <Route path="kota-kabupaten" element={<KotaKabupaten />} />

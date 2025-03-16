@@ -73,34 +73,43 @@ const AppBar = ({ toggleSidebar, auth, avatarURL }) => {
             <p className="user-email">{auth.nama_petugas}</p>
           </div>
           <div className="dropdown-divider" />
-          <a href="#" className="dropdown-item">
-            <svg width={16} height={16} viewBox="0 0 16 16" fill="none">
-              <path
-                d="M8 8C9.933 8 11.5 6.433 11.5 4.5C11.5 2.567 9.933 1 8 1C6.067 1 4.5 2.567 4.5 4.5C4.5 6.433 6.067 8 8 8Z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M2 14C2 11.239 4.239 9 7 9H9C11.761 9 14 11.239 14 14"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
+          <a href="/admin/settings" className="dropdown-item">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={17}
+              height={17}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-settings"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+              <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
             </svg>
-            Profile
+            Settings
           </a>
           <a href="#" className="dropdown-item">
-            <svg width={16} height={16} viewBox="0 0 16 16" fill="none">
-              <path
-                d="M7 14H3C2.44772 14 2 13.5523 2 13V3C2 2.44772 2.44772 2 3 2H7"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M10 11L14 8L10 5"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-              <path d="M14 8H6" stroke="currentColor" strokeWidth="1.5" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={17}
+              height={17}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-yoga"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M12 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+              <path d="M4 20h4l1.5 -3" />
+              <path d="M17 20l-1 -5h-5l1 -7" />
+              <path d="M4 10l4 -1l4 -1l4 1.5l4 1.5" />
             </svg>
             Log out
           </a>

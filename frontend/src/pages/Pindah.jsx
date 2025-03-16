@@ -7,13 +7,15 @@ import PageHeader from "../components/PageHeader/PageHeader";
 import Field from "../components/Field/Field";
 import Toast from "../components/Toast/Toast";
 import {
-    deletePindah,
+  deletePindah,
   getPenduduk,
   getPindah,
   showPindah,
   storePindah,
   updatePindah,
 } from "../services/PindahRequest";
+import CardProfile from "../components/CardProfile/CardProfile";
+import { showPendudukAlt } from "../services/PendudukRequest";
 
 const Pindah = () => {
   const [pindah, setPindah] = useState([]);
@@ -21,7 +23,9 @@ const Pindah = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState([]);
   const [selectedPindah, setSelectedPindah] = useState([]);
+  const [selectedPenduduk, setSelectedPenduduk] = useState([]);
   const [pendudukDropdown, setPendudukDropdown] = useState([]);
+  const [isSeeModalOpen, setSeeModalOpen] = useState(false);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -46,6 +50,17 @@ const Pindah = () => {
   //     const data = await getRt(search);
   //     setRt(data.data);
   //   };
+
+  const handleSeeModalOpen = async (id) => {
+    setSelectedPenduduk([]);
+    setLoading(true);
+    setTimeout(async () => {
+      const data = await showPendudukAlt(id);
+      setSelectedPenduduk(data.data);
+      setSeeModalOpen(true);
+      setLoading(false);
+    }, 450);
+  };
 
   const handleCreateModalOpen = () => {
     setError([]);
@@ -142,7 +157,14 @@ const Pindah = () => {
                 <td data-label="#" className="number-cell">
                   {(i += 1)}
                 </td>
-                <td data-label="NIK">{val.NIK}</td>
+                <td data-label="NIK">
+                  <div
+                    className="txt-nik"
+                    onClick={() => handleSeeModalOpen(val.NIK)}
+                  >
+                    {val.NIK}
+                  </div>
+                </td>
                 <td data-label="Nama">{val.viewpenduduk.nama}</td>
                 <td data-label="Tanggal Pindah">{val.tanggal_pindah}</td>
                 <td data-label="Alasan">{val.alasan}</td>
@@ -291,6 +313,13 @@ const Pindah = () => {
             selectedPindah.NIK ? selectedPindah.NIK : ""
           }.`}
         />
+        <Modal
+          isOpen={isSeeModalOpen}
+          onClose={() => setSeeModalOpen(false)}
+          wide={true}
+        >
+          <CardProfile penduduk={selectedPenduduk || {}} />
+        </Modal>
       </Layout.Main>
       {loading && (
         <Layout.Toast>

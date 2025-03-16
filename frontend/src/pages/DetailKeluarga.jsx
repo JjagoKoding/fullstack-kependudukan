@@ -106,10 +106,10 @@ const DetailKeluarga = () => {
 
   useEffect(() => {
     if (selectedDetail) {
-      setNIK(selectedDetail.NIK);
-      setStatusHubungan(selectedDetail.status_hubungan);
-      setAyah(selectedDetail.nik_ayah);
-      setIbu(selectedDetail.nik_ibu);
+      setNIK(selectedDetail.NIK || "");
+      setStatusHubungan(selectedDetail.status_hubungan || "");
+      setAyah(selectedDetail.nik_ayah || "");
+      setIbu(selectedDetail.nik_ibu || "");
     }
   }, [selectedDetail]);
 

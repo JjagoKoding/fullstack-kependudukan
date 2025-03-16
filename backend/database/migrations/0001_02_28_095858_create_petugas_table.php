@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('nama_petugas');
             $table->string('username')->unique();
             $table->string('password');
-            $table->binary('image')->nullable();
         });
+        DB::statement("ALTER TABLE tb_petugas ADD image LONGBLOB");
     }
 
     /**

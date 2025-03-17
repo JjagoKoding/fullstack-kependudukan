@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import PageHeader from "../../../components/PageHeader/PageHeader";
 import "./Settings.css";
 import AppBar from "../../../components/AppBar/AppBar";
@@ -15,6 +15,8 @@ const Settings = () => {
   const [refresh, setRefresh] = useState(false);
   const [avatarURL, setAvatarURL] = useState(null);
   const [active, setActive] = useState("Profile");
+  const [avatar, setAvatar] = useState("");
+  const avatarRef = useRef();
   const navigate = useNavigate();
 
   async function Authorization() {
@@ -27,11 +29,11 @@ const Settings = () => {
       },
     });
     const data = await res.json();
-    avatar(data.id_petugas);
+    getAvatar(data.id_petugas);
     setAuth(data);
   }
 
-  const avatar = async (id) => {
+  const getAvatar = async (id) => {
     const token = localStorage.getItem("token");
     const response = await fetch(`/api/avatar/${id}`, {
       headers: {
@@ -54,6 +56,38 @@ const Settings = () => {
       setUsername(auth?.username || "");
     }
   }, [auth]);
+
+  async function handleChangeProfile() {
+    const token = localStorage.getItem("token");
+    const res = await fetch("/api/updateprofile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        nama_petugas: nama,
+        username: username,
+      }),
+    });
+    await res.json();
+    navigate(0);
+  }
+
+  async function handleChangeAvatar() {
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("image", avatar);
+    const res = await fetch("/api/updateavatar", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+    await res.json();
+    navigate(0);
+  }
 
   return (
     <section id="settings">
@@ -113,7 +147,12 @@ const Settings = () => {
                 <h2 className="headnya">Profile</h2>
                 <p className="deskripsi">Atur bagian profile anda disini.</p>
               </div>
-              <form>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleChangeProfile();
+                }}
+              >
                 <div className="isian">
                   <div className="form-row">
                     <Field
@@ -122,7 +161,7 @@ const Settings = () => {
                       data={`nama`}
                       contentLabel={`Nama`}
                       setValue={nama}
-                      setOnChange={(e) => setnama(e.target.value)}
+                      setOnChange={(e) => setNama(e.target.value)}
                       setError={error?.nama}
                     />
                   </div>
@@ -159,7 +198,9 @@ const Settings = () => {
                   </div>
                 </div>
                 <div className="form-footer">
-                  <button className="button primary">Change</button>
+                  <button className="button primary" type="submit">
+                    Change
+                  </button>
                 </div>
               </form>
             </>
@@ -171,11 +212,33 @@ const Settings = () => {
                 <p className="deskripsi">Atur avatar anda disini.</p>
                 <div className="isian">
                   <div className="avatar-wrapper">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" />
-                    <form className="formAvatar">
-                      <input type="file" id="inpAvatar" formEncType="multipart/form-data" />
-                      <label htmlFor="inpAvatar" className="button secondary">Choose Avatar</label>
-                      <button type="submit" className="button primary">Change Avatar</button>
+                    <img src={avatarURL} ref={avatarRef} />
+                    <form
+                      className="formAvatar"
+                      encType="multipart/form-data"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        handleChangeAvatar();
+                      }}
+                    >
+                      <input
+                        type="file"
+                        id="inpAvatar"
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            const url = URL.createObjectURL(file);
+                            setAvatarURL(url);
+                            setAvatar(file);
+                          }
+                        }}
+                      />
+                      <label htmlFor="inpAvatar" className="button secondary">
+                        Choose Avatar
+                      </label>
+                      <button type="submit" className="button primary">
+                        Change Avatar
+                      </button>
                     </form>
                   </div>
                 </div>

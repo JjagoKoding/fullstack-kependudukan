@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use finfo;
+use App\Helpers\Api;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -48,5 +51,34 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Logged out successfully']);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $petugas = $request->user();
+        $validasi = $request->validate([
+            'nama_petugas' => 'required',
+            'username' => [
+                'required',
+                Rule::unique('tb_petugas', 'username')->ignore($petugas, 'username')
+            ]
+        ]);
+        $petugas->update($validasi);
+        return Api::make(200, 'Data berhasil diubah', null);
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        try {
+            $petugas = $request->user();
+            $request->validate([
+                'image' => 'required'
+            ]);
+            $imageData = file_get_contents($request->file('image')->getRealPath());
+            $petugas->update(['image' => $imageData]);
+            return Api::make(200, 'Avatar berhasil diubah.', null);
+        } catch (ValidationException $e) {
+            return Api::make(422, 'Validation Failed', null);
+        }
     }
 }

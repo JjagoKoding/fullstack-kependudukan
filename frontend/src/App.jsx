@@ -21,6 +21,7 @@ const Kelahiran = lazy(() => import("./pages/Kelahiran"));
 const Pindah = lazy(() => import("./pages/Pindah"));
 const Pendatang = lazy(() => import("./pages/Pendatang"));
 const Settings = lazy(() => import("./pages/Auth/Settings/Settings"));
+const Home = lazy(() => import("./pages/Home/Home"));
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Route path="pindah" element={<Pindah />} />
             <Route path="pendatang" element={<Pendatang />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="home" element={<Home />} />
           </Route>
         </Routes>
       </Suspense>

@@ -37,6 +37,7 @@ export default function Layout({ children }) {
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     setAvatarURL(url);
+    window.avatarURL = url;
   };
 
   useEffect(() => {

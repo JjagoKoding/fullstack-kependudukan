@@ -279,7 +279,7 @@ const DetailKeluarga = () => {
             </option>
             {NIKDropdown.map((val) => (
               <option value={val.NIK} key={val.NIK}>
-                {val.NIK} - {val.nama}
+                {val.NIK} - {val.nama} - {val.status}
               </option>
             ))}
           </Field>
@@ -316,7 +316,7 @@ const DetailKeluarga = () => {
             </option>
             {ayahDropdown.map((val) => (
               <option value={val.NIK} key={val.NIK}>
-                {val.NIK} - {val.nama}
+                {val.NIK} - {val.nama} - {val.status}
               </option>
             ))}
           </Field>
@@ -333,7 +333,7 @@ const DetailKeluarga = () => {
             </option>
             {ibuDropdown.map((val) => (
               <option value={val.NIK} key={val.NIK}>
-                {val.NIK} - {val.nama}
+                {val.NIK} - {val.nama} - {val.status}
               </option>
             ))}
           </Field>
@@ -358,7 +358,7 @@ const DetailKeluarga = () => {
             </option>
             {NIKDropdown.map((val) => (
               <option value={val.NIK} key={val.NIK}>
-                {val.NIK} - {val.nama}
+                {val.NIK} - {val.nama} - {val.status}
               </option>
             ))}
           </Field>
@@ -395,7 +395,7 @@ const DetailKeluarga = () => {
             </option>
             {ayahDropdown.map((val) => (
               <option value={val.NIK} key={val.NIK}>
-                {val.NIK} - {val.nama}
+                {val.NIK} - {val.nama} - {val.status}
               </option>
             ))}
           </Field>
@@ -412,7 +412,7 @@ const DetailKeluarga = () => {
             </option>
             {ibuDropdown.map((val) => (
               <option value={val.NIK} key={val.NIK}>
-                {val.NIK} - {val.nama}
+                {val.NIK} - {val.nama} - {val.status}
               </option>
             ))}
           </Field>

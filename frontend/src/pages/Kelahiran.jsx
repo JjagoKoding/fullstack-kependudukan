@@ -7,7 +7,7 @@ import PageHeader from "../components/PageHeader/PageHeader";
 import Field from "../components/Field/Field";
 import Toast from "../components/Toast/Toast";
 import {
-    deleteKelahiran,
+  deleteKelahiran,
   getAyah,
   getIbu,
   getKelahiran,
@@ -51,10 +51,10 @@ const Kelahiran = () => {
     loadIbu();
   }, [refresh]);
 
-  //   const handleSearch = async (search) => {
-  //     const data = await getRt(search);
-  //     setRt(data.data);
-  //   };
+  const handleSearch = async (search) => {
+    const data = await getKelahiran(search);
+    setKelahiran(data.data);
+  };
 
   const handleCreateModalOpen = () => {
     setError([]);
@@ -148,7 +148,7 @@ const Kelahiran = () => {
         breadcrumbsPath={`Kelahiran`}
         heading={`Kelola Kelahiran`}
         handleEvent={handleCreateModalOpen}
-        // handleSearch={(e) => handleSearch(e.target.value)}
+        handleSearch={(e) => handleSearch(e.target.value)}
       />
       <Layout.Main>
         <Table>

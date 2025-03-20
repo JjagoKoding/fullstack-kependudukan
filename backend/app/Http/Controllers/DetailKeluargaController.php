@@ -62,12 +62,20 @@ class DetailKeluargaController extends Controller
         }
     }
 
-    public function ayah() {
+    public function alt()
+    {
+        $penduduk = ViewPenduduk::where('status', '!=', 'Lahir')->get();
+        return Api::make(Response::HTTP_OK, 'Data berhasil dimuat', $penduduk);
+    }
+
+    public function ayah()
+    {
         $ayah = ViewPenduduk::where('jk', 'L')->get();
         return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', $ayah);
     }
 
-    public function ibu() {
+    public function ibu()
+    {
         $ibu = ViewPenduduk::where('jk', 'P')->get();
         return Api::make(Response::HTTP_OK, 'Data berhasil dimuat.', $ibu);
     }

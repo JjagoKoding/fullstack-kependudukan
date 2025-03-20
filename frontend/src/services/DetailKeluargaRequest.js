@@ -10,7 +10,7 @@ export const getDetail = async (id, search = null) => {
 
 export const getNIK = async () => {
   try {
-    const response = await fetch(`/api/penduduk`);
+    const response = await fetch(`/api/detail-keluarga/alt`);
     return await response.json();
   } catch (error) {
     console.error("Error saat ambil data:", error);

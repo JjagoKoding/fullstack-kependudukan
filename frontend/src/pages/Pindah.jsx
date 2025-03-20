@@ -46,10 +46,10 @@ const Pindah = () => {
     loadPenduduk();
   }, [refresh]);
 
-  //   const handleSearch = async (search) => {
-  //     const data = await getRt(search);
-  //     setRt(data.data);
-  //   };
+  const handleSearch = async (search) => {
+    const data = await getPindah(search);
+    setPindah(data.data);
+  };
 
   const handleSeeModalOpen = async (id) => {
     setSelectedPenduduk([]);
@@ -146,7 +146,7 @@ const Pindah = () => {
         breadcrumbsPath={`Pindah`}
         heading={`Kelola Pindah`}
         handleEvent={handleCreateModalOpen}
-        //handleSearch={(e) => handleSearch(e.target.value)}
+        handleSearch={(e) => handleSearch(e.target.value)}
       />
       <Layout.Main>
         <Table>

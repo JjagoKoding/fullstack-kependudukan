@@ -70,10 +70,10 @@ const Pendatang = () => {
     loadPekerjaan();
   }, [refresh]);
 
-  //   const handleSearch = async (search) => {
-  //     const data = await getRt(search);
-  //     setRt(data.data);
-  //   };
+  const handleSearch = async (search) => {
+    const data = await getPendatang(search);
+    setPendatang(data.data);
+  };
 
   const handleSeeModalOpen = async (id) => {
     setSelectedPenduduk([]);
@@ -210,7 +210,7 @@ const Pendatang = () => {
         breadcrumbsPath={`Pendatang`}
         heading={`Kelola Pendatang`}
         handleEvent={handleCreateModalOpen}
-        // handleSearch={(e) => handleSearch(e.target.value)}
+        handleSearch={(e) => handleSearch(e.target.value)}
       />
       <Layout.Main>
         <Table>

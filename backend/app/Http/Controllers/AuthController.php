@@ -42,6 +42,9 @@ class AuthController extends Controller
     public function avatar($id)
     {
         $image = Petugas::findOrFail($id);
+        if($image->image == null) {
+            return Api::make(404, 'Avatar not found.', null);
+        }
 
         return response($image->image)
             ->header('Content-Type', 'image/jpeg');

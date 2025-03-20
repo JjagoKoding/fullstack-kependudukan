@@ -157,7 +157,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Keluarga" value={dataCount.keluarga || ""}>
+              <OverviewCard label="Keluarga" value={dataCount.keluarga || "0"}>
                 <OverviewCard.Icon bgColor={`#E0EBFE`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +179,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Kelahiran" value={dataCount.kelahiran || ""}>
+              <OverviewCard label="Kelahiran" value={dataCount.kelahiran || "0"}>
                 <OverviewCard.Icon bgColor={`#EFEFEF`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -203,7 +203,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Kematian" value={dataCount.kematian || ""}>
+              <OverviewCard label="Kematian" value={dataCount.kematian || "0"}>
                 <OverviewCard.Icon bgColor={`#FBEFEE`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -222,7 +222,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Pendatang" value={dataCount.pendatang || ""}>
+              <OverviewCard label="Pendatang" value={dataCount.pendatang || "0"}>
                 <OverviewCard.Icon bgColor={`rgba(217,131,36,0.1)`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -243,7 +243,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Pindah" value={dataCount.pindah || ""}>
+              <OverviewCard label="Pindah" value={dataCount.pindah || "0"}>
                 <OverviewCard.Icon bgColor={`rgba(0,135,198,0.1)`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -264,7 +264,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Provinsi" value={dataCount.provinsi || ""}>
+              <OverviewCard label="Provinsi" value={dataCount.provinsi || "0"}>
                 <OverviewCard.Icon bgColor={`rgba(255,217,95,0.1)`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -283,7 +283,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Kota & Kabupaten" value={dataCount.kota_kabupaten || ""}>
+              <OverviewCard label="Kota & Kabupaten" value={dataCount.kota_kabupaten || "0"}>
                 <OverviewCard.Icon bgColor={`rgba(39,68,93,0.1)`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -304,7 +304,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Kecamatan" value={dataCount.kecamatan || ""}>
+              <OverviewCard label="Kecamatan" value={dataCount.kecamatan || "0"}>
                 <OverviewCard.Icon bgColor={`rgba(120,12,40,0.1)`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -329,7 +329,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Desa & Kelurahan" value={dataCount.desa_kelurahan || ""}>
+              <OverviewCard label="Desa & Kelurahan" value={dataCount.desa_kelurahan || "0"}>
                 <OverviewCard.Icon bgColor={`rgba(75,22,76,0.1)`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -350,7 +350,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="RW" value={dataCount.rw || ""}>
+              <OverviewCard label="RW" value={dataCount.rw || "0"}>
                 <OverviewCard.Icon bgColor={`rgba(152,216,239,0.2)`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -370,7 +370,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="RT" value={dataCount.rt || ""}>
+              <OverviewCard label="RT" value={dataCount.rt || "0"}>
                 <OverviewCard.Icon bgColor={`rgba(124,115,125,0.1)`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -391,7 +391,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Pendidikan" value={dataCount.pendidikan || ""}>
+              <OverviewCard label="Pendidikan" value={dataCount.pendidikan || "0"}>
                 <OverviewCard.Icon bgColor={`rgba(139,93,255,0.1)`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -411,7 +411,7 @@ export default function Home() {
                   </svg>
                 </OverviewCard.Icon>
               </OverviewCard>
-              <OverviewCard label="Pekerjaan" value={dataCount.pekerjaan || ""}>
+              <OverviewCard label="Pekerjaan" value={dataCount.pekerjaan || "0"}>
                 <OverviewCard.Icon bgColor={`rgba(26,77,46,0.1)`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

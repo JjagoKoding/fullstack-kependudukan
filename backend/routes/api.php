@@ -42,6 +42,7 @@ Route::resource('pekerjaan', PekerjaanController::class);
 Route::resource('penduduk', PendudukController::class);
 Route::get('/penduduk/alt/{penduduk}', [PendudukController::class, 'alt']);
 Route::resource('keluarga', KeluargaController::class);
+Route::get('detail-keluarga/alt', [DetailKeluargaController::class, 'alt']);
 Route::resource('detail-keluarga', DetailKeluargaController::class);
 Route::get('ayah', [DetailKeluargaController::class, 'ayah']);
 Route::get('ibu', [DetailKeluargaController::class, 'ibu']);

@@ -34,10 +34,16 @@ export default function Layout({ children }) {
         Authorization: `Bearer ${token}`,
       },
     });
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    setAvatarURL(url);
-    window.avatarURL = url;
+    if (response.ok) {
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      setAvatarURL(url);
+      window.avatarURL = url;
+    } else {
+      const url = '/avatarnone.webp';
+      setAvatarURL(url);
+      window.avatarURL = url;
+    }
   };
 
   useEffect(() => {

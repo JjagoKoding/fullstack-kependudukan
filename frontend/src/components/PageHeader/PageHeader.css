@@ -134,6 +134,10 @@ nav.breadcrumbs {
     align-items: start;
   }
 
+  .page-header.alt {
+    height: auto;
+  }
+
   nav.breadcrumbs {
     display: none;
   }
@@ -155,7 +159,7 @@ nav.breadcrumbs {
 @media (max-width: 468px) {
     .group2-wrapper {
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.2rem;
     }
 
     .search-input {

@@ -19,7 +19,7 @@ const Login = () => {
 
     if(res.ok) {
         localStorage.setItem('token', data.access_token);
-        navigate("/admin/provinsi");
+        navigate("/admin/home");
     }
   }
 

@@ -1,6 +1,6 @@
 import "./PageHeader.css";
 
-const PageHeader = ({ hasGroup, breadcrumbsLink, breadcrumbsPath, heading, handleEvent, handleSearch, navigateTo = null }) => {
+const PageHeader = ({ hasGroup, breadcrumbsLink, breadcrumbsPath, heading, handleEvent, handleSearch, navigateTo = null, children }) => {
   return (
     <section className={`page-header ${!hasGroup ? "alt" : ""}`}>
       <div>
@@ -31,6 +31,7 @@ const PageHeader = ({ hasGroup, breadcrumbsLink, breadcrumbsPath, heading, handl
         </nav>
         <h1 className="heading-text">{heading}</h1>
       </div>
+      {children && children}
       {hasGroup && (
         <div className="group2">
           <div className="group2-wrapper">

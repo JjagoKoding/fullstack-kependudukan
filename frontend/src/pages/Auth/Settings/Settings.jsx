@@ -93,7 +93,7 @@ const Settings = () => {
     <section id="settings">
       <div
         className="tombol-balik"
-        onClick={() => navigate("/admin/provinsi", { replace: true })}
+        onClick={() => navigate("/admin/home", { replace: true })}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -53,6 +53,7 @@ class KematianController extends Controller
             ], [
                 'NIK.required' => 'Penduduk wajib diisi.',
                 'NIK.exists' => 'Penduduk tidak valid.',
+                'NIK.unique' => 'Penduduk sudah terdaftar sebagai meninggal.',
                 'tanggal.required' => 'Tanggal wajib diisi.',
                 'alasan.required' => 'Alasan wajib diisi.',
             ]);

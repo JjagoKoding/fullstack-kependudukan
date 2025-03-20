@@ -377,3 +377,15 @@ export const ColumnPendatang = [
     title: "Alasan",
   },
 ];
+
+export const ColumnPetugas = [
+  {
+    title: "#",
+  },
+  {
+    title: "Nama Petugas",
+  },
+  {
+    title: "Username",
+  },
+];

@@ -18,6 +18,7 @@ class Petugas extends Authenticatable
         'password',
         'image',
     ];
+    protected $hidden = ['password', 'image'];
 
     public $timestamps = false;
 }

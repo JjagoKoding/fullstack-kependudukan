@@ -21,6 +21,12 @@ return new class extends Migration
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });
+        Schema::table('personal_access_tokens', function (Blueprint $table) {
+            $table->foreign('tokenable_id')
+                ->references('id_petugas')
+                ->on('tb_petugas')
+                ->onDelete('cascade');
+        });
     }
 
     /**

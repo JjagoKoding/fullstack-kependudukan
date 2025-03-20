@@ -14,6 +14,7 @@ use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\PendatangController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PindahController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RTController;
@@ -50,4 +51,9 @@ Route::resource('kelahiran', KelahiranController::class);
 Route::get('pindah/alt', [PindahController::class, 'alt']);
 Route::resource('pindah', PindahController::class);
 Route::resource('pendatang', PendatangController::class);
+Route::get('petugas', [PetugasController::class, 'index']);
+Route::post('petugas', [PetugasController::class, 'store']);
+Route::get('petugas/{id}', [PetugasController::class, 'show']);
+Route::put('petugas/{petugas:id_petugas}', [PetugasController::class, 'update']);
+Route::delete('petugas/{petugas:id_petugas}', [PetugasController::class, 'destroy']);
 

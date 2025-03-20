@@ -10,6 +10,7 @@ import {
   PendatangIcon,
   PendidikanIcon,
   PendudukIcon,
+  PetugasIcon,
   PindahIcon,
   ProvinsiIcon,
   RTIcon,
@@ -19,13 +20,23 @@ import {
 export const SidebarMenu = [
   {
     type: "sub-header",
-    content: "HOME",
+    content: "MAIN",
   },
   {
     type: "sub-menu",
     label: "Home",
     path: "/admin/home",
     icon: <HomeIcon />,
+  },
+  {
+    type: "sub-header",
+    content: "PENGGUNA",
+  },
+  {
+    type: "sub-menu",
+    label: "Petugas",
+    path: "/admin/petugas",
+    icon: <PetugasIcon/>,
   },
   {
     type: "sub-header",

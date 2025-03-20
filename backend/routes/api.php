@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DesaKelurahanController;
 use App\Http\Controllers\DetailKeluargaController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KelahiranController;
 use App\Http\Controllers\KeluargaController;
@@ -27,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 Route::get('/avatar/{id}', [AuthController::class, 'avatar']);
+Route::get('/home', HomeController::class);
 
 Route::resource('provinsi', ProvinsiController::class);
 Route::resource('kota-kabupaten', KotaKabupatenController::class);

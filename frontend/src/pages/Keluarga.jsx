@@ -36,6 +36,10 @@ const Keluarga = () => {
   const [daerah, setDaerah] = useState("");
 
   useEffect(() => {
+    document.title = "Keluarga";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getKeluarga("");
       setKeluarga(data.data);

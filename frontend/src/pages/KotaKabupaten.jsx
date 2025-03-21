@@ -30,6 +30,10 @@ const KotaKabupaten = () => {
   const [provinsi, setProvinsi] = useState("");
 
   useEffect(() => {
+    document.title = "Kota & Kabupaten";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getKotaKabupaten("");
       setKotaKabupaten(data.data);

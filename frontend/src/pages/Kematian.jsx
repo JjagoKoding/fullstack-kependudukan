@@ -34,6 +34,10 @@ const Kematian = () => {
   const [alasan, setAlasan] = useState("");
 
   useEffect(() => {
+    document.title = "Kematian";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getKematian("");
       setKematian(data.data);

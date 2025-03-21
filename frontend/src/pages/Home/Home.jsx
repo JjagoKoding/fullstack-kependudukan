@@ -32,6 +32,10 @@ export default function Home() {
   const [bulan, setBulan] = useState("Bulan");
 
   useEffect(() => {
+    document.title = "Home";
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       setBulan(chartRef.current?.offsetWidth < 800 ? "Index" : "Bulan");
     };

@@ -20,6 +20,10 @@ const Pendidikan = () => {
   const [input, setInput] = useState("");
 
   useEffect(() => {
+    document.title = "Pendidikan";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getPendidikan("");
       setPendidikan(data.data);

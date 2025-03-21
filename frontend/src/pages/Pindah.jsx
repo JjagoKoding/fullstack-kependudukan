@@ -34,6 +34,10 @@ const Pindah = () => {
   const [alasan, setAlasan] = useState("");
 
   useEffect(() => {
+    document.title = "Pindah";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getPindah("");
       setPindah(data.data);

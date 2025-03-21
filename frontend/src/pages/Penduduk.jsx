@@ -45,6 +45,10 @@ const Penduduk = () => {
   const [golonganDarah, setGolonganDarah] = useState("");
 
   useEffect(() => {
+    document.title = "Penduduk";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getPenduduk("");
       setPenduduk(data.data);

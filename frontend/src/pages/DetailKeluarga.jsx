@@ -41,6 +41,13 @@ const DetailKeluarga = () => {
   const [ibu, setIbu] = useState("");
 
   useEffect(() => {
+      document.title = `Detail Keluarga ${
+        detailKeluarga?.find((val) => val.status_hubungan === "Kepala Keluarga")
+          ?.nama || `No KK : ${id}`
+      }`;
+  }, [detailKeluarga]);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getDetail(id);
       setDetailKeluarga(data.data);
@@ -192,7 +199,11 @@ const DetailKeluarga = () => {
                 <td data-label="Ayah">{val.ayah}</td>
                 <td data-label="Ibu">{val.ibu}</td>
                 <td data-label="Actions" className="action-group">
-                  <div className="selengkapnya" style={{ cursor: "pointer" }} onClick={() => handleSeeModalOpen(val.NIK)}>
+                  <div
+                    className="selengkapnya"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleSeeModalOpen(val.NIK)}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1.3rem"

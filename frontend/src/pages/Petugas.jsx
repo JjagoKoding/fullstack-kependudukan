@@ -28,6 +28,10 @@ const Petugas = () => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
+    document.title = "Petugas";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getPetugas("");
       setPetugas(data.data);

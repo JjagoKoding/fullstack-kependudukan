@@ -20,6 +20,10 @@ const Pekerjaan = () => {
   const [input, setInput] = useState("");
 
   useEffect(() => {
+    document.title = "Pekerjaan";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getPekerjaan("");
       setPekerjaan(data.data);

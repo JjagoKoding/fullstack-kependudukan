@@ -26,6 +26,10 @@ const RT = () => {
   const [input, setInput] = useState("");
 
   useEffect(() => {
+    document.title = "RT";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getRt("");
       setRt(data.data);

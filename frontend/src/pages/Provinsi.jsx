@@ -26,6 +26,10 @@ export default function Provinsi() {
   const [nama_provinsi, set_nama_provinsi] = useState("");
 
   useEffect(() => {
+    document.title = "Provinsi";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getProvinsi("");
       setProvinsi(data.data);

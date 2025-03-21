@@ -48,6 +48,10 @@ const Pendatang = () => {
   const [alasan, setAlasan] = useState("");
 
   useEffect(() => {
+    document.title = "Pendatang";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getPendatang("");
       setPendatang(data.data);

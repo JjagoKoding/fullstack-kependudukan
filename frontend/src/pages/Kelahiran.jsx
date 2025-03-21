@@ -34,6 +34,10 @@ const Kelahiran = () => {
   const [ibu, setIbu] = useState("");
 
   useEffect(() => {
+    document.title = "Kelahiran";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getKelahiran("");
       setKelahiran(data.data);

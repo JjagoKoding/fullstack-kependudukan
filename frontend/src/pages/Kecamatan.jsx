@@ -29,6 +29,10 @@ const Kecamatan = () => {
   const [kotaKabupaten, setKotaKabupaten] = useState("");
 
   useEffect(() => {
+    document.title = "Kecamatan";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getKecamatan("");
       setKecamatan(data.data);

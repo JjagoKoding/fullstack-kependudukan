@@ -26,6 +26,10 @@ const RW = () => {
   const [input, setInput] = useState("");
 
   useEffect(() => {
+    document.title = "RW";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getRw("");
       setRw(data.data);

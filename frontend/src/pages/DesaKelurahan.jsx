@@ -31,6 +31,10 @@ const DesaKelurahan = () => {
   const [kecamatan, setKecamatan] = useState("");
 
   useEffect(() => {
+    document.title = "Desa & Kelurahan";
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const data = await getDesaKelurahan("");
       setDesaKelurahan(data.data);

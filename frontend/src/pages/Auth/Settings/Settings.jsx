@@ -19,6 +19,10 @@ const Settings = () => {
   const avatarRef = useRef();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    document.title = "Settings";
+  }, []);
+
   async function Authorization() {
     const token = localStorage.getItem("token");
     const res = await fetch("/api/profile", {

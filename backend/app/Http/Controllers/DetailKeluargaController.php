@@ -20,7 +20,7 @@ class DetailKeluargaController extends Controller
     {
         $search = $request->input('search');
         $id = $request->input('id');
-        $detailkeluarga = ViewDetailKeluarga::where('NOKK', $id)->get();
+        $detailkeluarga = ViewDetailKeluarga::where('NOKK', $id)->where('nama', 'like', "%$search%")->get();
         return Api::make(Response::HTTP_OK, 'Data berhasil dimuat', $detailkeluarga);
     }
 

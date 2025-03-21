@@ -41,10 +41,10 @@ const DetailKeluarga = () => {
   const [ibu, setIbu] = useState("");
 
   useEffect(() => {
-      document.title = `Detail Keluarga ${
-        detailKeluarga?.find((val) => val.status_hubungan === "Kepala Keluarga")
-          ?.nama || `No KK : ${id}`
-      }`;
+    document.title = `Detail Keluarga ${
+      detailKeluarga?.find((val) => val.status_hubungan === "Kepala Keluarga")
+        ?.nama || `No KK : ${id}`
+    }`;
   }, [detailKeluarga]);
 
   useEffect(() => {
@@ -70,10 +70,10 @@ const DetailKeluarga = () => {
     loadIbu();
   }, [refresh]);
 
-  //   const handleSearch = async (search) => {
-  //     const data = await getRt(search);
-  //     setRt(data.data);
-  //   };
+  const handleSearch = async (search) => {
+    const data = await getDetail(id, search);
+    setDetailKeluarga(data.data);
+  };
 
   const handleSeeModalOpen = async (id) => {
     setSelectedPenduduk([]);
@@ -181,7 +181,7 @@ const DetailKeluarga = () => {
         }`}
         navigateTo={`/admin/keluarga`}
         handleEvent={handleCreateModalOpen}
-        // handleSearch={(e) => handleSearch(e.target.value)}
+        handleSearch={(e) => handleSearch(e.target.value)}
       />
       <Layout.Main>
         <Table>

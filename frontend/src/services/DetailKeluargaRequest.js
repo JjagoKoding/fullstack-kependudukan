@@ -1,6 +1,6 @@
 export const getDetail = async (id, search = null) => {
   try {
-    const response = await fetch(`/api/detail-keluarga?id=${id}`);
+    const response = await fetch(`/api/detail-keluarga?id=${id}${search !== null ? `&search=${search}` : ''}`);
     return await response.json();
   } catch (error) {
     console.error("Error saat ambil data:", error);

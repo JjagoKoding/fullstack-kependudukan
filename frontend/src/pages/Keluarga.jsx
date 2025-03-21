@@ -62,10 +62,10 @@ const Keluarga = () => {
     loadDaerah();
   }, [refresh]);
 
-  //   const handleSearch = async (search) => {
-  //     const data = await getRt(search);
-  //     setRt(data.data);
-  //   };
+  const handleSearch = async (search) => {
+    const data = await getKeluarga(search);
+    setKeluarga(data.data);
+  };
 
   const handleCreateModalOpen = () => {
     setError([]);
@@ -159,7 +159,7 @@ const Keluarga = () => {
         breadcrumbsPath={`Keluarga`}
         heading={`Kelola Keluarga`}
         handleEvent={handleCreateModalOpen}
-        // handleSearch={(e) => handleSearch(e.target.value)}
+        handleSearch={(e) => handleSearch(e.target.value)}
       />
       <Layout.Main>
         <Table>
@@ -179,7 +179,13 @@ const Keluarga = () => {
                   {val.desakelurahan.desa_kelurahan}
                 </td>
                 <td data-label="Actions" className="action-group">
-                  <div className="see" onClick={() => window.location.href = `/admin/keluarga/${val.NOKK}`} style={{ cursor: 'pointer' }}>
+                  <div
+                    className="see"
+                    onClick={() =>
+                      (window.location.href = `/admin/keluarga/${val.NOKK}`)
+                    }
+                    style={{ cursor: "pointer" }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1.3rem"

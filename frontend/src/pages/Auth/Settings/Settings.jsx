@@ -95,32 +95,12 @@ const Settings = () => {
 
   return (
     <section id="settings">
-      <div
-        className="tombol-balik"
-        onClick={() => navigate("/admin/home", { replace: true })}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1.3rem"
-          height="1.3rem"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M15 6l-6 6l6 6" />
-        </svg>
-      </div>
-
       <PageHeader
         hasGroup={false}
         breadcrumbsLink={`Back to Home`}
         breadcrumbsPath={`Settings`}
         heading={`Settings`}
+        navigateTo={'/admin/home'}
       />
       <hr className="garis" />
       <div className="container-profile">
@@ -141,6 +121,12 @@ const Settings = () => {
               onClick={() => setActive("Avatar")}
             >
               <span>Avatar</span>
+            </a>
+            <a
+              className={`settings-link exit`}
+              onClick={() => navigate('/admin/home', { replace: true })}
+            >
+              <span>Exit</span>
             </a>
           </div>
         </nav>

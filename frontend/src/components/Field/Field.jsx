@@ -55,6 +55,16 @@ const Field = ({
           {children}
         </select>
       )}
+      {type === "password" && (
+        <input
+          type={type}
+          id={`input_${data}`}
+          placeholder={placeHolder}
+          autoComplete="off"
+          value={setValue}
+          onChange={setOnChange}
+        />
+      )}
       <span className="error-input" id={`error_${data}`}>
         {setError && setError}
       </span>

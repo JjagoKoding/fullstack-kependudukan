@@ -15,23 +15,30 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+        try {
+            $request->validate([
+                'username' => 'required',
+                'password' => 'required',
+            ], [
+                'username.required' => 'Username wajib diisi.', 
+                'password.required' => 'Password wajib diisi.', 
+            ]);
 
-        $petugas = Petugas::where('username', $request->username)->first();
+            $petugas = Petugas::where('username', $request->username)->first();
 
-        if (!$petugas || !Hash::check($request->password, $petugas->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            if (!$petugas || !Hash::check($request->password, $petugas->password)) {
+                return response()->json(['message' => 'Username atau Password salah.'], 401);
+            }
+
+            $token = $petugas->createToken('auth_token')->plainTextToken;
+
+            return response()->json([
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+            ]);
+        } catch (ValidationException $e) {
+            return Api::make(422, 'Username atau Password salah.', null);
         }
-
-        $token = $petugas->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ]);
     }
 
     public function profile(Request $request)
@@ -42,7 +49,7 @@ class AuthController extends Controller
     public function avatar($id)
     {
         $image = Petugas::findOrFail($id);
-        if($image->image == null) {
+        if ($image->image == null) {
             return Api::make(404, 'Avatar not found.', null);
         }
 

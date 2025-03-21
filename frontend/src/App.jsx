@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-const Login = lazy(() => import("./pages/Login"));
+const Login = lazy(() => import("./pages/Auth/Login/Login"));
 const Logout = lazy(() => import("./pages/Auth/Logout"));
 const GuestRoute = lazy(() => import("./routes/GuestRoute"));
 const ProtectedRoute = lazy(() => import("./routes/ProtectedRoute"));
